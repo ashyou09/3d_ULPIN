@@ -61,8 +61,14 @@ button,input,select{font:inherit;color:inherit}
 .iconbtn:hover{border-color:var(--accent);color:var(--accent)}
 .iconbtn[aria-pressed="true"]{background:var(--accent);color:#fff;border-color:var(--accent)}
 .tourbtn{padding:6px 13px;border-radius:20px;border:1px solid var(--accent);background:var(--accent);
-  color:#fff;font-weight:600;font-size:12.5px;cursor:pointer;white-space:nowrap}
-.tourbtn.off{background:transparent;color:var(--accent)}
+  color:#fff;font-weight:700;font-size:12.5px;cursor:pointer;white-space:nowrap;
+  box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 18%,transparent),0 5px 14px color-mix(in srgb,var(--accent) 24%,transparent)}
+.tourbtn:hover{transform:translateY(-1px);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 22%,transparent),0 7px 18px color-mix(in srgb,var(--accent) 30%,transparent)}
+.tourbtn:active{transform:translateY(0)}
+@media(prefers-reduced-motion:no-preference){
+  .tourbtn.off{animation:demoPulse 2.4s ease-in-out infinite}
+}
+@keyframes demoPulse{0%,100%{box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 16%,transparent),0 5px 14px color-mix(in srgb,var(--accent) 22%,transparent)}50%{box-shadow:0 0 0 7px color-mix(in srgb,var(--accent) 6%,transparent),0 7px 18px color-mix(in srgb,var(--accent) 32%,transparent)}}
 
 .stagewrap{position:relative;flex:1;min-height:0;background:var(--canvas-bg)}
 .stg{position:absolute;inset:0;opacity:0;pointer-events:none;transition:opacity .5s ease}
@@ -107,19 +113,27 @@ button,input,select{font:inherit;color:inherit}
 .proc-ft button.go{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:600}
 
 .viewer{position:absolute;inset:0;display:grid;
-  grid-template-columns:var(--cl,246px) minmax(0,1fr) var(--cr,344px);transition:grid-template-columns .28s ease}
+  grid-template-columns:var(--cl,246px) minmax(0,1fr) var(--cr,344px);transition:grid-template-columns .28s cubic-bezier(.2,.8,.2,1)}
 .viewer.nl{--cl:0px} .viewer.nr{--cr:0px}
 .rail{background:var(--surface);overflow:hidden;display:flex;flex-direction:column}
 .rail.left{border-right:1px solid var(--line)} .rail.right{border-left:1px solid var(--line)}
+.rail-head{height:48px;padding:0 12px 0 16px;display:flex;align-items:center;justify-content:space-between;
+  border-bottom:1px solid var(--line);flex:none}
+.rail-head strong{font-size:12.5px;font-weight:600}
+.panel-close{min-width:32px;height:30px;padding:0 9px;border:1px solid transparent;border-radius:var(--r);
+  background:transparent;color:var(--fg-2);cursor:pointer;font-size:12px;font-weight:600}
+.panel-close:hover{background:var(--surface-2);color:var(--fg);border-color:var(--line)}
 .rail-in{padding:14px 13px;overflow-y:auto;width:246px;flex:1}
 .rail.right .rail-in{width:344px}
-.scene{position:relative;background:var(--canvas-bg);min-width:0}
+.scene{position:relative;background:var(--canvas-bg);min-width:0;min-height:0;height:100%;overflow:hidden}
 #gl{display:block;width:100%;height:100%}
-.pull{position:absolute;top:12px;width:22px;height:44px;display:grid;place-items:center;cursor:pointer;
-  background:var(--surface);border:1px solid var(--line);color:var(--fg-2);font-size:11px;z-index:12}
-.pull.l{left:0;border-left:none;border-radius:0 6px 6px 0}
-.pull.r{right:0;border-right:none;border-radius:6px 0 0 6px}
-.pull:hover{color:var(--accent);border-color:var(--accent)}
+.panel-dock{position:absolute;top:12px;left:50%;transform:translateX(-50%);display:flex;align-items:center;
+  gap:4px;padding:4px;background:var(--glass);border:1px solid var(--line);border-radius:10px;
+  box-shadow:var(--shadow);backdrop-filter:blur(10px);z-index:13}
+.panel-dock button{height:32px;padding:0 12px;border:1px solid transparent;border-radius:6px;background:transparent;
+  color:var(--fg-2);cursor:pointer;font-size:11.5px;font-weight:600;white-space:nowrap}
+.panel-dock button:hover{background:var(--surface-2);color:var(--fg)}
+.panel-dock button[aria-expanded="true"]{background:var(--accent);color:#fff;border-color:var(--accent)}
 
 .grp{margin-bottom:18px}
 .grp>h3{font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--fg-3);font-weight:600;
@@ -186,7 +200,7 @@ table.rrr td:last-child{text-align:right;font-family:var(--f-mono)}
   box-shadow:0 2px 8px rgba(0,0,0,.16);opacity:0;transition:opacity .2s}
 .anno.on{opacity:1}
 .anno .sw{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:5px;vertical-align:middle}
-.hud{position:absolute;right:34px;top:12px;display:flex;flex-direction:column;gap:6px;align-items:flex-end;z-index:11}
+.hud{position:absolute;right:12px;top:12px;display:flex;flex-direction:column;gap:6px;align-items:flex-end;z-index:11}
 .hud .tip{padding:5px 10px;border-radius:var(--r);font-size:10.5px;background:var(--glass);
   border:1px solid var(--line);color:var(--fg-2);backdrop-filter:blur(6px)}
 .legend{position:absolute;left:12px;bottom:12px;display:flex;flex-wrap:wrap;gap:4px 10px;max-width:min(560px,68%);
@@ -226,7 +240,9 @@ table.rrr td:last-child{text-align:right;font-family:var(--f-mono)}
 .tour.mini .mtag{display:inline}
 
 .deck{background:var(--surface);border-top:1px solid var(--line);flex:none;z-index:20}
+.deck.min{display:none}
 .tabs{display:flex;padding:0 14px;border-bottom:1px solid var(--line);overflow-x:auto;align-items:center}
+.deck-title{padding-right:14px;margin-right:4px;border-right:1px solid var(--line);font-size:12px;white-space:nowrap}
 .tabs button[role=tab]{padding:9px 13px;background:none;border:none;border-bottom:2px solid transparent;
   cursor:pointer;font-size:12.5px;color:var(--fg-2);white-space:nowrap}
 .tabs button[aria-selected="true"]{color:var(--fg);border-bottom-color:var(--accent);font-weight:600}
@@ -234,7 +250,7 @@ table.rrr td:last-child{text-align:right;font-family:var(--f-mono)}
   background:var(--crit);color:#fff;font-weight:700;font-family:var(--f-mono)}
 .tabs .grow{flex:1}
 .panel{padding:14px 18px 20px;max-height:min(300px,34vh);overflow-y:auto}
-.panel[hidden]{display:none} .deck.min .panel{display:none}
+.panel[hidden]{display:none}
 .issue{display:grid;grid-template-columns:auto 60px 1fr auto;gap:12px;align-items:start;padding:9px 0;border-bottom:1px solid var(--line-soft)}
 .sev{width:4px;align-self:stretch;border-radius:2px;min-height:32px}
 .sev.hard{background:var(--crit)}.sev.warn{background:var(--warn)}.sev.ok{background:var(--ok)}
@@ -292,11 +308,26 @@ code{font-family:var(--f-mono);font-size:11px;background:var(--surface-2);paddin
 .kbox b{display:block;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:4px}
 
 @media(max-width:1080px){
-  .viewer{grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr)}
-  .viewer .rail.right{display:none}
+  .viewer{display:block}
+  .scene{position:absolute;inset:0}
+  .rail{position:absolute;top:0;bottom:0;width:min(320px,88vw);z-index:24;box-shadow:var(--shadow);
+    transition:transform .28s cubic-bezier(.2,.8,.2,1)}
+  .rail.left{left:0;transform:translateX(0)}
+  .rail.right{right:0;width:min(360px,90vw);transform:translateX(0)}
+  .viewer.nl .rail.left{transform:translateX(-102%)}
+  .viewer.nr .rail.right{transform:translateX(102%)}
   .rail-in,.rail.right .rail-in{width:auto}
+  .panel-dock{top:10px}
+  .hud{top:54px}
   .mast .sub,.steps{display:none}
   .colwrap,.fsi,.dig,.ba{grid-template-columns:1fr}
+}
+@media(max-width:640px){
+  .mast{gap:8px;padding:8px 10px}.mast h1{font-size:15px}.pid,.mast .iconbtn{display:none}
+  .tourbtn{padding:6px 10px}
+  .panel-dock button{padding:0 9px;font-size:11px}
+  .legend{max-width:calc(100% - 24px)}
+  .tabs{padding:0 8px}.deck-title{display:none}
 }
 @media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;transition-duration:.01ms!important}}
 </style>
@@ -313,7 +344,7 @@ code{font-family:var(--f-mono);font-size:11px;background:var(--surface-2);paddin
     <div class="s" data-s="1"><b>02</b> Pipeline</div><span class="arw">&rarr;</span>
     <div class="s" data-s="2"><b>03</b> Cadastre</div>
   </div>
-  <button class="tourbtn off" id="btnTour">&#9654; Guided tour</button>
+  <button class="tourbtn off" id="btnTour" title="Play the guided product demo">&#9654; Start demo</button>
   <div class="pid">27MH0BKC0G0114</div>
   <button class="iconbtn" id="btnFocus" aria-pressed="false" title="Focus mode">&#9633;</button>
   <button class="iconbtn" id="btnFull" title="Fullscreen">&#8599;</button>
@@ -352,8 +383,10 @@ code{font-family:var(--f-mono);font-size:11px;background:var(--surface-2);paddin
     </div></div>
   </div>
 
-  <div class="stg" id="stg2"><div class="viewer" id="viewer">
-    <aside class="rail left"><div class="rail-in">
+  <div class="stg" id="stg2"><div class="viewer nl nr" id="viewer">
+    <aside class="rail left" id="panelLayers" aria-hidden="true" inert>
+      <div class="rail-head"><strong>View controls</strong><button class="panel-close" id="closeLayers" aria-label="Close view controls">Close</button></div>
+      <div class="rail-in">
       <div class="grp"><h3>Z-class layers</h3><div id="layers"></div></div>
       <div class="grp"><h3>Colour by</h3>
         <div class="seg" id="colourMode">
@@ -389,8 +422,11 @@ code{font-family:var(--f-mono);font-size:11px;background:var(--surface-2);paddin
     <div class="scene" id="scene">
       <canvas id="gl"></canvas>
       <div id="annos"></div>
-      <button class="pull l" id="pullL" title="Hide left panel">&#10094;</button>
-      <button class="pull r" id="pullR" title="Hide right panel">&#10095;</button>
+      <div class="panel-dock" aria-label="Open workspace panels">
+        <button id="pullL" aria-controls="panelLayers" aria-expanded="false">View</button>
+        <button id="deckOpen" aria-controls="deck" aria-expanded="false">Analysis</button>
+        <button id="pullR" aria-controls="panelProperty" aria-expanded="false">Property</button>
+      </div>
       <div class="hud"><div class="tip">Drag orbit &middot; right-drag pan &middot; scroll zoom &middot; click a volume</div></div>
       <div class="legend" id="legend"></div>
       <div class="scalebar"><div class="b"></div><span id="scaleTxt">20 m</span></div>
@@ -408,7 +444,9 @@ code{font-family:var(--f-mono);font-size:11px;background:var(--surface-2);paddin
       </div>
     </div>
 
-    <aside class="rail right"><div class="rail-in">
+    <aside class="rail right" id="panelProperty" aria-hidden="true" inert>
+      <div class="rail-head"><strong>Property details</strong><button class="panel-close" id="closeProperty" aria-label="Close property details">Close</button></div>
+      <div class="rail-in">
       <div class="grp"><h3>3D ULPIN property card</h3>
         <div class="card-id" id="cardId"></div>
         <div class="idsplit"><div>P<b id="sP">&mdash;</b></div><div>Z<b id="sZ">&mdash;</b></div>
@@ -431,8 +469,9 @@ code{font-family:var(--f-mono);font-size:11px;background:var(--surface-2);paddin
   </div></div>
 </div>
 
-<div class="deck" id="deck">
+<div class="deck min" id="deck" aria-hidden="true" inert>
   <div class="tabs" role="tablist">
+    <strong class="deck-title">Analysis</strong>
     <button role="tab" aria-selected="true" data-tab="issues">Validation issues <span class="badge" id="issueCount">0</span></button>
     <button role="tab" aria-selected="false" data-tab="col">Ownership column</button>
     <button role="tab" aria-selected="false" data-tab="fsi">FSI &amp; air rights</button>
@@ -440,7 +479,7 @@ code{font-family:var(--f-mono);font-size:11px;background:var(--surface-2);paddin
     <button role="tab" aria-selected="false" data-tab="ledger">ID ledger</button>
     <button role="tab" aria-selected="false" data-tab="prov">Provenance</button>
     <span class="grow"></span>
-    <button class="iconbtn" id="deckTog" title="Collapse panel" style="margin-right:4px">&#9660;</button>
+    <button class="panel-close" id="deckTog" aria-label="Close analysis panel" style="margin-left:8px">Close</button>
   </div>
   <div class="panel" id="p-issues" role="tabpanel"></div>
   <div class="panel" id="p-col" role="tabpanel" hidden></div>
@@ -924,7 +963,12 @@ function finishPipeline(){
 }
 $("pSkip").onclick=function(){ if(stage===1) finishPipeline(); };
 $("btnRestart").onclick=function(){ clearTimeout(pTimer); endTour(); setStage(0); };
-function enterViewer(){ if(stage===2) return; clearTimeout(pTimer); setStage(2); if(!RM) riseIn(); }
+function enterViewer(){
+  if(stage===2) return;
+  clearTimeout(pTimer); setStage(2);
+  setSidePanel("left",false); setSidePanel("right",false); setDeck(false); deckOverride=null;
+  if(!RM) riseIn();
+}
 
 /* ═════ 6. THREE.JS ═════ */
 var canvas=$("gl");
@@ -1357,6 +1401,15 @@ function resize(){
   camera.aspect=r.width/r.height; camera.updateProjectionMatrix();
   $("scaleTxt").textContent=(74*(2*Math.tan(camera.fov*Math.PI/360)*sph.r)/r.height).toFixed(0)+" m";
 }
+var panelLayoutRAF=0;
+function syncPanelLayout(){
+  cancelAnimationFrame(panelLayoutRAF);
+  var started=performance.now();
+  (function update(){
+    resize(); positionTour();
+    if(!RM&&performance.now()-started<360) panelLayoutRAF=requestAnimationFrame(update);
+  })();
+}
 if(window.ResizeObserver) new ResizeObserver(resize).observe($("scene"));
 addEventListener("resize",function(){ resize(); if(stage===0) paintOrtho(); });
 (function loop(){
@@ -1441,14 +1494,39 @@ $("camSub").onclick=function(){ flyTo({r:96,theta:-0.5,phi:1.62,tx:0,ty:-14,tz:0
 $("camAir").onclick=function(){ flyTo({r:150,theta:-0.6,phi:1.18,tx:0,ty:58,tz:0}); };
 
 var viewer=$("viewer");
-$("pullL").onclick=function(){ viewer.classList.toggle("nl"); this.innerHTML=viewer.classList.contains("nl")?"&#10095;":"&#10094;"; };
-$("pullR").onclick=function(){ viewer.classList.toggle("nr"); this.innerHTML=viewer.classList.contains("nr")?"&#10094;":"&#10095;"; };
+function sideIsOpen(side){ return !viewer.classList.contains(side==="left"?"nl":"nr"); }
+function setSidePanel(side,open){
+  var left=side==="left", cls=left?"nl":"nr", panel=$(left?"panelLayers":"panelProperty"),
+      trigger=$(left?"pullL":"pullR");
+  if(open&&matchMedia("(max-width:1080px)").matches) setSidePanel(left?"right":"left",false);
+  viewer.classList.toggle(cls,!open);
+  panel.setAttribute("aria-hidden",open?"false":"true"); panel.inert=!open;
+  trigger.setAttribute("aria-expanded",open?"true":"false");
+  syncPanelLayout();
+}
+$("pullL").onclick=function(){
+  var open=!sideIsOpen("left");
+  if(open){ setSidePanel("right",false); deckOverride="closed"; setDeck(false); }
+  setSidePanel("left",open);
+};
+$("pullR").onclick=function(){
+  var open=!sideIsOpen("right");
+  if(open){ setSidePanel("left",false); deckOverride="closed"; setDeck(false); }
+  setSidePanel("right",open);
+};
+$("closeLayers").onclick=function(){ setSidePanel("left",false); $("pullL").focus(); };
+$("closeProperty").onclick=function(){ setSidePanel("right",false); $("pullR").focus(); };
+var panelsBeforeFocus=null;
 $("btnFocus").onclick=function(){
   var on=this.getAttribute("aria-pressed")!=="true";
   this.setAttribute("aria-pressed",on?"true":"false");
-  viewer.classList.toggle("nl",on); viewer.classList.toggle("nr",on);
-  deckOverride=on?"closed":"open"; setDeck(!on);
-  $("pullL").innerHTML=on?"&#10095;":"&#10094;"; $("pullR").innerHTML=on?"&#10094;":"&#10095;";
+  if(on){
+    panelsBeforeFocus={left:sideIsOpen("left"),right:sideIsOpen("right"),deck:deckIsOpen()};
+    setSidePanel("left",false); setSidePanel("right",false); deckOverride="closed"; setDeck(false);
+  }else if(panelsBeforeFocus){
+    setSidePanel("left",panelsBeforeFocus.left); setSidePanel("right",panelsBeforeFocus.right);
+    deckOverride=panelsBeforeFocus.deck?"open":"closed"; setDeck(panelsBeforeFocus.deck); panelsBeforeFocus=null;
+  }
 };
 $("btnFull").onclick=function(){
   if(!document.fullscreenElement)(document.documentElement.requestFullscreen||function(){}).call(document.documentElement);
@@ -1623,9 +1701,10 @@ $("digD").addEventListener("input",renderDig);
    collapsed until you reopen it — the tour switches tab content but never forces it open. */
 var deckOverride=null;   // null = tour decides · "open" / "closed" = you decided
 function setDeck(open){
-  $("deck").classList.toggle("min",!open);
-  $("deckTog").innerHTML=open?"&#9660;":"&#9650;";
-  setTimeout(function(){ resize(); positionTour(); },30);
+  var deck=$("deck");
+  deck.classList.toggle("min",!open); deck.setAttribute("aria-hidden",open?"false":"true"); deck.inert=!open;
+  $("deckOpen").setAttribute("aria-expanded",open?"true":"false");
+  syncPanelLayout();
 }
 function deckIsOpen(){ return !$("deck").classList.contains("min"); }
 function showTab(name,fromTour){
@@ -1639,9 +1718,12 @@ Array.prototype.forEach.call(document.querySelectorAll(".tabs button[role=tab]")
   b.onclick=function(){ deckOverride="open"; showTab(b.dataset.tab); };
 });
 $("deckTog").onclick=function(){
+  deckOverride="closed"; setDeck(false); $("deckOpen").focus();
+};
+$("deckOpen").onclick=function(){
   var open=!deckIsOpen();
-  deckOverride=open?"open":"closed";
-  setDeck(open);
+  if(open){ setSidePanel("left",false); setSidePanel("right",false); }
+  deckOverride=open?"open":"closed"; setDeck(open);
 };
 function positionTour(){
   var t=$("tour");
@@ -1785,12 +1867,13 @@ function endTour(){
   stopAuto(); tourI=-1; driftOn=false;
   $("tour").classList.remove("on");
   document.querySelector(".hud").style.display="";
-  $("btnTour").classList.add("off"); $("btnTour").innerHTML="&#9654; Guided tour";
+  $("btnTour").classList.add("off"); $("btnTour").innerHTML="&#9654; Start demo";
   setScene({ctx:true,soil:true,ortho:true,env:true,anno:true,cut:17,exp:0,mode:"class",
             isolate:null,focus:null,dims:null,label:null,base:true});
   select(U703||units[0]);
   flyTo({r:212,theta:-0.74,phi:1.03,tx:0,ty:14,tz:0});
-  deckOverride=null; showTab("issues");
+  deckOverride="closed"; showTab("issues",true); setDeck(false);
+  setSidePanel("left",false); setSidePanel("right",false);
 }
 $("btnTour").onclick=function(){ tourI>=0?endTour():startTour(); };
 $("tourNext").onclick=function(){ stopAuto(); tourI===TOUR.length-1?endTour():showTour(tourI+1); };
@@ -1798,7 +1881,12 @@ $("tourPrev").onclick=function(){ stopAuto(); if(tourI>0) showTour(tourI-1); };
 $("tourExit").onclick=endTour;
 $("tourPlay").onclick=function(){ autoOn?stopAuto():startAuto(); };
 addEventListener("keydown",function(e){
-  if(tourI<0) return;
+  if(tourI<0){
+    if(e.key==="Escape"){
+      setSidePanel("left",false); setSidePanel("right",false); deckOverride="closed"; setDeck(false);
+    }
+    return;
+  }
   if(e.key==="ArrowRight"){ e.preventDefault(); stopAuto(); tourI===TOUR.length-1?endTour():showTour(tourI+1); }
   if(e.key==="ArrowLeft"){ e.preventDefault(); stopAuto(); if(tourI>0) showTour(tourI-1); }
   if(e.key===" "){ e.preventDefault(); autoOn?stopAuto():startAuto(); }
@@ -1808,6 +1896,7 @@ addEventListener("keydown",function(e){
 /* boot */
 syncTog(); repaint(); applyVis(); applyFocus(); renderDig(); updateCam();
 select(pick("A","07","003")||units[0]);
+setSidePanel("left",false); setSidePanel("right",false); setDeck(false);
 setStage(0); setTimeout(resize,60);
 matchMedia("(prefers-color-scheme: dark)").addEventListener("change",function(){ repaint(); if(stage===0) paintOrtho(); });
 new MutationObserver(function(){ repaint(); if(stage===0) paintOrtho(); })
