@@ -451,7 +451,7 @@ code{font-family:var(--f-mono);font-size:11px;background:var(--surface-2);paddin
         <button id="btnTourCta" class="tour-cta-btn" title="Explore the 3D cadastre tour">
           <span class="tour-cta-ico">&#9654;</span>
           <span class="tour-cta-txt">Start Guided 3D Tour</span>
-          <span class="tour-cta-badge">7 highlights</span>
+          <span class="tour-cta-badge">11 highlights</span>
         </button>
       </div>
       <div class="tour" id="tour">
@@ -1919,8 +1919,8 @@ var U_LOW=units.filter(function(u){ return u.bsmtLvl; });
 
 /* Each step describes the WHOLE scene, so the tour never inherits a stray toggle. */
 var TOUR=[
- {h:"This is the entire land record today",
-  p:"One polygon in BKC, 4,032 m², carrying one 14-character Bhu-Aadhaar. The building is drawn faint because as far as the Record of Rights is concerned it does not exist. Everything a city actually buys, sells, mortgages and digs through happens inside this outline, and none of it is written down.",
+ {h:"The 2D Problem: A Flat Record for a Vertical City",
+  p:"Welcome to the 3D Cadastre tour. Today, land records register this 4,032 m² BKC plot as just a single flat 2D boundary under one 14-character Bhu-Aadhaar (27MH0BKC0G01H0). On official maps, the 14-storey tower, retail shops, basement parking, and subsurface metro tunnels have zero vertical coordinates. This tour shows how 3D ULPIN extends national cadastre standards into three dimensions — giving every owned volume a verified, tamper-proof spatial identity.",
   scene:{ctx:true,soil:false,ortho:true,env:false,anno:true,cut:17,exp:0,mode:"class",focus:[U_S]},
   cam:{r:268,theta:-0.74,phi:1.12,tx:0,ty:6,tz:0}, sel:function(){ return U_S; }, tab:null},
 
