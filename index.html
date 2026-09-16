@@ -6,7 +6,7 @@
   --bg:#ECEFF0; --surface:#F7F9F9; --surface-2:#E2E7E8; --line:#C8D1D3; --line-soft:#DBE2E3;
   --fg:#121D20; --fg-2:#4A5A5E; --fg-3:#71858A;
   --accent:#EE7623; --ok:#2F8B57; --warn:#B87A17; --crit:#C33B2E;
-  --z-s:#6E7F8D; --z-a:#3D8FCC; --z-u:#B5822F; --z-i:#C9433A; --z-r:#8A5FC8; --z-c:#4E9A72;
+  --z-s:#3D8FCC; --z-a:#8A5FC8; --z-u:#B5822F; --z-i:#C9433A; --z-r:#8A5FC8; --z-c:#4E9A72;
   --grade-a:#2F8B57; --grade-b:#3D8FCC; --grade-c:#B87A17; --grade-d:#8A5FC8;
   --canvas-bg:#C9D4D7; --glass:rgba(247,249,249,.92);
   --shadow:0 1px 2px rgba(11,19,21,.07), 0 8px 22px rgba(11,19,21,.09);
@@ -19,7 +19,7 @@
   --bg:#0B1315; --surface:#121D20; --surface-2:#1A272B; --line:#2A3B40; --line-soft:#1F2E32;
   --fg:#E4EBEC; --fg-2:#9DB0B4; --fg-3:#6F8388;
   --accent:#FF8A3D; --ok:#4FBE80; --warn:#E0A93C; --crit:#EC6055;
-  --z-s:#8FA2B0; --z-a:#5AAEE8; --z-u:#D6A24C; --z-i:#EC6055; --z-r:#B79BEE; --z-c:#66BB8E;
+  --z-s:#5AAEE8; --z-a:#B79BEE; --z-u:#D6A24C; --z-i:#EC6055; --z-r:#B79BEE; --z-c:#66BB8E;
   --grade-a:#4FBE80; --grade-b:#5AAEE8; --grade-c:#E0A93C; --grade-d:#B79BEE;
   --canvas-bg:#0D181B; --glass:rgba(18,29,32,.92);
   --shadow:0 1px 2px rgba(0,0,0,.45), 0 10px 28px rgba(0,0,0,.4);
@@ -28,7 +28,7 @@
   --bg:#0B1315; --surface:#121D20; --surface-2:#1A272B; --line:#2A3B40; --line-soft:#1F2E32;
   --fg:#E4EBEC; --fg-2:#9DB0B4; --fg-3:#6F8388;
   --accent:#FF8A3D; --ok:#4FBE80; --warn:#E0A93C; --crit:#EC6055;
-  --z-s:#8FA2B0; --z-a:#5AAEE8; --z-u:#D6A24C; --z-i:#EC6055; --z-r:#B79BEE; --z-c:#66BB8E;
+  --z-s:#5AAEE8; --z-a:#B79BEE; --z-u:#D6A24C; --z-i:#EC6055; --z-r:#B79BEE; --z-c:#66BB8E;
   --grade-a:#4FBE80; --grade-b:#5AAEE8; --grade-c:#E0A93C; --grade-d:#B79BEE;
   --canvas-bg:#0D181B; --glass:rgba(18,29,32,.92);
   --shadow:0 1px 2px rgba(0,0,0,.45), 0 10px 28px rgba(0,0,0,.4);
@@ -61,14 +61,8 @@ button,input,select{font:inherit;color:inherit}
 .iconbtn:hover{border-color:var(--accent);color:var(--accent)}
 .iconbtn[aria-pressed="true"]{background:var(--accent);color:#fff;border-color:var(--accent)}
 .tourbtn{padding:6px 13px;border-radius:20px;border:1px solid var(--accent);background:var(--accent);
-  color:#fff;font-weight:700;font-size:12.5px;cursor:pointer;white-space:nowrap;
-  box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 18%,transparent),0 5px 14px color-mix(in srgb,var(--accent) 24%,transparent)}
-.tourbtn:hover{transform:translateY(-1px);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 22%,transparent),0 7px 18px color-mix(in srgb,var(--accent) 30%,transparent)}
-.tourbtn:active{transform:translateY(0)}
-@media(prefers-reduced-motion:no-preference){
-  .tourbtn.off{animation:demoPulse 2.4s ease-in-out infinite}
-}
-@keyframes demoPulse{0%,100%{box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 16%,transparent),0 5px 14px color-mix(in srgb,var(--accent) 22%,transparent)}50%{box-shadow:0 0 0 7px color-mix(in srgb,var(--accent) 6%,transparent),0 7px 18px color-mix(in srgb,var(--accent) 32%,transparent)}}
+  color:#fff;font-weight:600;font-size:12.5px;cursor:pointer;white-space:nowrap}
+.tourbtn.off{background:transparent;color:var(--accent)}
 
 .stagewrap{position:relative;flex:1;min-height:0;background:var(--canvas-bg)}
 .stg{position:absolute;inset:0;opacity:0;pointer-events:none;transition:opacity .5s ease}
@@ -99,14 +93,19 @@ button,input,select{font:inherit;color:inherit}
 .proc-hd .el{margin-left:auto;font-family:var(--f-mono);font-size:11.5px;color:var(--fg-3);font-variant-numeric:tabular-nums}
 .bar{height:3px;background:var(--surface-2)}
 .bar i{display:block;height:100%;background:var(--accent);width:0;transition:width .35s ease}
-.proc-body{display:grid;grid-template-columns:1fr 1fr}
-.plist{padding:12px 8px 12px 18px;border-right:1px solid var(--line-soft);max-height:290px;overflow-y:auto}
-.pstep{display:grid;grid-template-columns:18px 1fr;gap:9px;padding:4px 0;font-size:12px;color:var(--fg-3)}
-.pstep .m{font-family:var(--f-mono);font-size:11px;text-align:center}
-.pstep.on{color:var(--fg);font-weight:600}.pstep.on .m{color:var(--accent)}
-.pstep.done{color:var(--fg-2)}.pstep.done .m{color:var(--ok)}
-.plog{padding:12px 16px;max-height:290px;overflow-y:auto;font-family:var(--f-mono);font-size:10.8px;line-height:1.75;color:var(--fg-2)}
-.plog div{white-space:pre-wrap;word-break:break-word}
+.proc-hd{padding:14px 18px 10px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+.proc-hd h3{margin:0;font-size:14px;font-family:var(--f-serif)}
+.proc-hd .el{font-family:var(--f-mono);font-size:11.5px;color:var(--accent)}
+.proc .bar{height:3px;background:var(--surface-2);position:relative;overflow:hidden}
+.proc .bar i{position:absolute;left:0;top:0;bottom:0;width:0%;background:var(--accent);transition:width .2s ease}
+.proc-body{display:grid;grid-template-columns:190px 1fr;min-height:270px;max-height:360px}
+.plist{border-right:1px solid var(--line);padding:10px 0;overflow-y:auto}
+.pstep{display:flex;align-items:center;gap:8px;padding:6px 14px;font-size:11.5px;color:var(--fg-3)}
+.pstep.on{color:var(--fg);font-weight:600;background:var(--surface-2)}
+.pstep.done{color:var(--ok)}
+.pstep .m{width:14px;font-family:var(--f-mono);font-size:10px}
+.plog{padding:12px 14px;font-family:var(--f-mono);font-size:10.8px;color:var(--fg-2);overflow-y:auto;
+  line-height:1.65;background:var(--surface-2);white-space:pre-wrap}
 .plog .k{color:var(--ok)}.plog .w{color:var(--warn)}.plog .c{color:var(--crit)}.plog .t{color:var(--fg-3)}
 .proc-ft{padding:10px 18px;border-top:1px solid var(--line);display:flex;align-items:center;gap:12px;font-size:11.5px;color:var(--fg-3)}
 .proc-ft button{margin-left:auto;padding:6px 14px;border-radius:var(--r);border:1px solid var(--line);background:var(--bg);cursor:pointer;font-size:12px}
@@ -157,31 +156,33 @@ input[type=text]{width:100%;padding:6px 8px;background:var(--bg);border:1px soli
 .tog{display:flex;align-items:center;gap:8px;width:100%;padding:6px;border:none;background:transparent;
   cursor:pointer;text-align:left;border-radius:4px;font-size:12.5px}
 .tog:hover{background:var(--surface-2)}
-.tog .box{width:13px;height:13px;border-radius:3px;border:1.5px solid var(--fg-3);flex:none;display:grid;
-  place-items:center;font-size:9px;color:#fff}
-.tog[aria-pressed="true"] .box{background:var(--accent);border-color:var(--accent)}
-.btn{width:100%;padding:7px 10px;background:var(--surface-2);border:1px solid var(--line);
-  border-radius:var(--r);font-size:12.5px;cursor:pointer;margin-top:4px}
-.btn:hover{border-color:var(--accent);color:var(--accent)}
+.tog .box{width:14px;height:14px;border:1px solid var(--line);border-radius:3px;display:grid;place-items:center;
+  font-size:10px;color:transparent;background:var(--bg)}
+.tog[aria-pressed="true"] .box{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn{display:block;width:100%;padding:7px 10px;margin-top:6px;border:1px solid var(--line);border-radius:var(--r);
+  background:var(--surface-2);cursor:pointer;font-size:11.5px;font-weight:500;text-align:left}
+.btn:hover{background:var(--surface);border-color:var(--accent);color:var(--accent)}
 .strat{display:flex;align-items:center;gap:8px;font-size:11px;padding:3px 0;color:var(--fg-2)}
 .strat i{width:14px;height:11px;border-radius:2px;flex:none}
 .strat .d{margin-left:auto;font-family:var(--f-mono);font-size:10px;color:var(--fg-3)}
 
 .card-id{font-family:var(--f-mono);font-size:14.5px;font-weight:600;letter-spacing:.03em;background:#0B1315;
-  color:#FFD98A;padding:11px 12px;border-radius:var(--r);word-break:break-all;line-height:1.45}
-.card-id .p{color:#7E9AA3} .card-id .k{color:#FF8A3D}
-.idsplit{display:flex;gap:4px;margin-top:7px;font-family:var(--f-mono);font-size:9.5px}
-.idsplit div{flex:1;text-align:center;padding:4px 2px;background:var(--surface-2);border-radius:3px;color:var(--fg-3)}
-.idsplit div b{display:block;color:var(--fg);font-size:11.5px}
-.chips{display:flex;flex-wrap:wrap;gap:5px;margin:10px 0}
-.chip{padding:3px 8px;border-radius:20px;font-size:11px;font-weight:600;border:1px solid transparent}
+  color:#fff;padding:10px 11px;border-radius:var(--r);margin-bottom:8px;word-break:break-all}
+.card-id .p{color:#7E9AA3} .card-id .z{color:var(--accent)} .card-id .k{color:#FF8A3D}
+.idsplit{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;margin-bottom:10px}
+.idsplit div{background:var(--surface-2);border:1px solid var(--line);border-radius:4px;padding:4px 6px;
+  font-size:9.5px;color:var(--fg-3);text-transform:uppercase}
+.idsplit div b{display:block;font-size:12.5px;color:var(--fg);font-family:var(--f-mono);margin-top:2px}
+.chips{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px}
+.chip{display:inline-block;padding:2px 7px;border-radius:3px;font-size:10px;font-weight:600;
+  letter-spacing:.04em;text-transform:uppercase;border:1px solid transparent}
 .chip.cls{color:#fff} .chip.grade{background:var(--surface-2);border-color:var(--line)}
-.chip.st-reg{background:color-mix(in srgb,var(--ok) 15%,transparent);color:var(--ok);border-color:color-mix(in srgb,var(--ok) 34%,transparent)}
-.chip.st-prov{background:color-mix(in srgb,var(--warn) 15%,transparent);color:var(--warn);border-color:color-mix(in srgb,var(--warn) 34%,transparent)}
-.chip.st-uns{background:color-mix(in srgb,var(--crit) 15%,transparent);color:var(--crit);border-color:color-mix(in srgb,var(--crit) 34%,transparent)}
-dl.spec{display:grid;grid-template-columns:auto 1fr;margin:0;border-top:1px solid var(--line-soft)}
-dl.spec dt{padding:6px 12px 6px 0;font-size:11.5px;color:var(--fg-2);border-bottom:1px solid var(--line-soft)}
-dl.spec dd{margin:0;padding:6px 0;font-size:11.5px;text-align:right;border-bottom:1px solid var(--line-soft);
+.st-reg{background:rgba(47,139,87,.15);color:var(--ok);border-color:var(--ok)}
+.st-prov{background:rgba(217,119,6,.15);color:var(--warn);border-color:var(--warn)}
+.st-uns{background:rgba(219,68,55,.15);color:var(--crit);border-color:var(--crit)}
+dl.spec{display:grid;grid-template-columns:auto 1fr;gap:4px 10px;font-size:12px;margin:0}
+dl.spec dt{color:var(--fg-3)}
+dl.spec dd{margin:0;text-align:right;font-weight:500;
   font-family:var(--f-mono);font-variant-numeric:tabular-nums}
 .verify{margin-top:10px;padding:10px 11px;border-radius:var(--r);border:1px solid var(--line);background:var(--surface-2)}
 .verify .hd{display:flex;gap:7px;font-size:11.5px;font-weight:600;margin-bottom:6px}
@@ -239,6 +240,25 @@ table.rrr td:last-child{text-align:right;font-family:var(--f-mono)}
 .mtag{display:none;font-family:var(--f-mono);font-size:11.5px;color:var(--accent);font-weight:600;padding-right:4px}
 .tour.mini .mtag{display:inline}
 
+/* floating intuitive guided tour trigger */
+.tour-cta{position:absolute;left:50%;top:64%;transform:translate(-50%,-50%);z-index:25;
+  display:none;animation:tourCtaPop .35s cubic-bezier(0.16,1,0.3,1)}
+.tour-cta.on{display:block}
+.tour-cta-btn{display:inline-flex;align-items:center;gap:10px;padding:8px 18px 8px 12px;border-radius:30px;
+  border:1px solid var(--accent);background:var(--glass);backdrop-filter:blur(12px);color:var(--fg);
+  font-family:var(--f-sans);font-size:12.5px;font-weight:600;cursor:pointer;
+  box-shadow:0 6px 22px rgba(0,0,0,.15),0 0 0 1px rgba(238,118,35,.15);
+  transition:all .22s cubic-bezier(0.16,1,0.3,1)}
+.tour-cta-btn:hover{background:var(--surface);transform:translateY(-2px);
+  box-shadow:0 10px 28px rgba(238,118,35,.25),0 0 0 1px var(--accent)}
+.tour-cta-btn:active{transform:translateY(0)}
+.tour-cta-ico{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--accent);
+  color:#fff;font-size:10px;padding-left:2px;box-shadow:0 2px 8px rgba(238,118,35,.4);transition:transform .2s ease}
+.tour-cta-btn:hover .tour-cta-ico{transform:scale(1.12)}
+.tour-cta-badge{font-family:var(--f-mono);font-size:10.5px;font-weight:500;color:var(--fg-3);padding:2px 7px;
+  border-radius:10px;background:var(--surface-2);margin-left:2px}
+@keyframes tourCtaPop{from{opacity:0;transform:translate(-50%,-42%) scale(0.95)}to{opacity:1;transform:translate(-50%,-50%) scale(1)}}
+
 .deck{background:var(--surface);border-top:1px solid var(--line);flex:none;z-index:20}
 .deck.min{display:none}
 .tabs{display:flex;padding:0 14px;border-bottom:1px solid var(--line);overflow-x:auto;align-items:center}
@@ -260,38 +280,23 @@ table.rrr td:last-child{text-align:right;font-family:var(--f-mono)}
 code{font-family:var(--f-mono);font-size:11px;background:var(--surface-2);padding:1px 4px;border-radius:3px}
 .issue .act{font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
 .act.hard{color:var(--crit)}.act.warn{color:var(--warn)}.act.ok{color:var(--ok)}
-.dig{display:grid;grid-template-columns:220px minmax(0,1fr);gap:22px;align-items:start}
-.stratum{display:grid;grid-template-columns:88px 1fr auto;gap:10px;align-items:center;padding:6px 0;
-  border-bottom:1px solid var(--line-soft);font-size:12px}
-.stratum .d{font-family:var(--f-mono);font-size:11px;color:var(--fg-2);font-variant-numeric:tabular-nums}
-.stratum .bar2{height:8px;border-radius:2px;display:block}
-.stratum .hit{font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
-.stratum.clear{opacity:.4}
-.prov{display:grid;grid-template-columns:repeat(auto-fit,minmax(268px,1fr));gap:18px}
-.prov h4{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--fg-3);margin-bottom:8px;
-  padding-bottom:5px;border-bottom:1px solid var(--line-soft)}
-.prov ul{margin:0;padding-left:16px;font-size:12px;color:var(--fg-2)}
-.prov li{margin-bottom:6px} .prov li b{color:var(--fg);font-weight:600}
-.prov a{color:var(--accent);text-decoration:none;border-bottom:1px solid color-mix(in srgb,var(--accent) 40%,transparent)}
 
-/* ownership column */
-.colwrap{display:grid;grid-template-columns:270px minmax(0,1fr);gap:24px;align-items:start}
-.stack{display:flex;flex-direction:column-reverse;border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
-.slice{display:grid;grid-template-columns:8px 74px 1fr auto;gap:9px;align-items:center;padding:5px 9px 5px 0;
-  border-top:1px solid var(--line-soft);font-size:11.5px;background:var(--bg)}
-.slice:first-child{border-top:none}
-.slice.me{background:color-mix(in srgb,var(--accent) 12%,transparent);font-weight:600}
-.slice .bd{align-self:stretch;min-height:22px}
-.slice .el{font-family:var(--f-mono);font-size:10.5px;color:var(--fg-3);font-variant-numeric:tabular-nums}
-.slice .ow{color:var(--fg-2);font-size:11px;text-align:right;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.ba{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-.ba>div{border-radius:var(--r);padding:12px 14px;border:1px solid var(--line)}
-.ba .b4{border-color:color-mix(in srgb,var(--crit) 45%,var(--line))}
-.ba .af{border-color:color-mix(in srgb,var(--ok) 45%,var(--line))}
-.ba h4{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px}
-.ba .b4 h4{color:var(--crit)} .ba .af h4{color:var(--ok)}
-.ba ul{margin:0;padding-left:15px;font-size:11.5px;color:var(--fg-2)}
-.ba li{margin-bottom:5px}
+/* column */
+.colwrap{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,0.95fr);gap:20px;align-items:start}
+.col-table{width:100%;border-collapse:collapse;font-size:11.5px}
+.col-table th{text-align:left;padding:8px 10px;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-3);border-bottom:1px solid var(--line);background:var(--surface);position:sticky;top:0;z-index:2;white-space:nowrap}
+.col-table td{padding:7px 10px;border-bottom:1px solid var(--line-soft);vertical-align:middle}
+.col-table tr{cursor:pointer;transition:background .12s ease}
+.col-table tr:hover{background:var(--surface-2)}
+.col-table tr.sel-row{background:rgba(238,118,35,.14);border-left:3px solid var(--accent)}
+.col-table tr.sel-row td{font-weight:600;color:var(--fg)}
+.ba{display:flex;flex-direction:column;gap:12px}
+.b4{padding:12px 14px;background:var(--surface-2);border-left:3px solid var(--crit);border-radius:var(--r)}
+.b4 h4{font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--crit);margin:0 0 8px}
+.b4 ul{margin:0;padding-left:16px;font-size:11.8px;color:var(--fg-2);line-height:1.6}
+.af{padding:12px 14px;background:var(--surface-2);border-left:3px solid var(--ok);border-radius:var(--r)}
+.af h4{font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ok);margin:0 0 8px}
+.af ul{margin:0;padding-left:16px;font-size:11.8px;color:var(--fg-2);line-height:1.6}
 
 /* FSI */
 .fsi{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:26px;align-items:start}
@@ -306,6 +311,20 @@ code{font-family:var(--f-mono);font-size:11px;background:var(--surface-2);paddin
 .frow.tot{border-bottom:none;font-weight:600}
 .kbox{padding:11px 13px;border-radius:var(--r);border-left:3px solid var(--accent);background:var(--surface-2);font-size:12px}
 .kbox b{display:block;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:4px}
+
+.stratum{display:grid;grid-template-columns:88px 1fr auto;gap:10px;align-items:center;padding:6px 0;
+  border-bottom:1px solid var(--line-soft);font-size:12px}
+.stratum .d{font-family:var(--f-mono);font-size:11px;color:var(--fg-2);font-variant-numeric:tabular-nums}
+.stratum .bar2{height:8px;border-radius:2px;display:block}
+.stratum .hit{font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.stratum.clear{opacity:.4}
+
+.prov{display:grid;grid-template-columns:repeat(auto-fit,minmax(268px,1fr));gap:18px}
+.prov h4{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--fg-3);margin-bottom:8px;
+  padding-bottom:5px;border-bottom:1px solid var(--line-soft)}
+.prov ul{margin:0;padding-left:16px;font-size:12px;color:var(--fg-2)}
+.prov li{margin-bottom:6px} .prov li b{color:var(--fg);font-weight:600}
+.prov a{color:var(--accent);text-decoration:none;border-bottom:1px solid color-mix(in srgb,var(--accent) 40%,transparent)}
 
 @media(max-width:1080px){
   .viewer{display:block}
@@ -344,10 +363,8 @@ code{font-family:var(--f-mono);font-size:11px;background:var(--surface-2);paddin
     <div class="s" data-s="1"><b>02</b> Pipeline</div><span class="arw">&rarr;</span>
     <div class="s" data-s="2"><b>03</b> Cadastre</div>
   </div>
-  <button class="tourbtn off" id="btnTour" title="Play the guided product demo">&#9654; Start demo</button>
-  <div class="pid">27MH0BKC0G0114</div>
-  <button class="iconbtn" id="btnFocus" aria-pressed="false" title="Focus mode">&#9633;</button>
-  <button class="iconbtn" id="btnFull" title="Fullscreen">&#8599;</button>
+  <button class="tourbtn off" id="btnTour" style="display:none">&#9654; Guided tour</button>
+  <div class="pid">27MH0BKC0G01H0</div>
   <button class="iconbtn" id="btnRestart" title="Restart from the orthophoto">&#8635;</button>
 </header>
 
@@ -368,7 +385,7 @@ code{font-family:var(--f-mono);font-size:11px;background:var(--surface-2);paddin
       <span><i style="border-color:#3E7FA8;border-top-style:dotted"></i>600 mm water main, &minus;1.8 m</span>
     </div>
     <div class="o-cta" id="oCta">
-      <div class="cap">Parcel 27MH0BKC0G0114 &middot; 4,032 m&sup2;</div>
+      <div class="cap">Parcel 27MH0BKC0G01H0 &middot; 4,032 m&sup2;</div>
       <button id="btnRun">Survey this parcel</button>
     </div>
   </div>
@@ -400,7 +417,7 @@ code{font-family:var(--f-mono);font-size:11px;background:var(--surface-2);paddin
         <button class="tog" id="tgSoil" aria-pressed="true"><span class="box">&#10003;</span>Ground mass &amp; strata</button>
         <button class="tog" id="tgCtx" aria-pressed="true"><span class="box">&#10003;</span>Neighbouring buildings</button>
         <button class="tog" id="tgOrtho" aria-pressed="true"><span class="box">&#10003;</span>Orthophoto on terrain</button>
-        <button class="tog" id="tgAnno" aria-pressed="true"><span class="box">&#10003;</span>Feature annotations</button>
+        <button class="tog" id="tgAnno" aria-pressed="false"><span class="box">&#10003;</span>Feature annotations</button>
         <button class="tog" id="tgEnv" aria-pressed="true"><span class="box">&#10003;</span>Zoning envelope</button>
         <div class="fld" style="margin-top:10px">
           <label>Sun &mdash; time of day <span class="v" id="sunV">14:00</span></label>
@@ -409,7 +426,7 @@ code{font-family:var(--f-mono);font-size:11px;background:var(--surface-2);paddin
         <div id="strata"></div>
       </div>
       <div class="grp"><h3>Section</h3>
-        <div class="fld"><label>Hide above level <span class="v" id="cutVal">R1</span></label>
+        <div class="fld"><label>Hide above level <span class="v" id="cutVal">roof</span></label>
           <input type="range" id="cut" min="0" max="17" value="17" step="1"></div>
         <div class="fld"><label>Explode floors <span class="v" id="expVal">0.0 m</span></label>
           <input type="range" id="exp" min="0" max="60" value="0" step="1"></div>
@@ -430,6 +447,13 @@ code{font-family:var(--f-mono);font-size:11px;background:var(--surface-2);paddin
       <div class="hud"><div class="tip">Drag orbit &middot; right-drag pan &middot; scroll zoom &middot; click a volume</div></div>
       <div class="legend" id="legend"></div>
       <div class="scalebar"><div class="b"></div><span id="scaleTxt">20 m</span></div>
+      <div class="tour-cta" id="tourCta">
+        <button id="btnTourCta" class="tour-cta-btn" title="Explore the 3D cadastre tour">
+          <span class="tour-cta-ico">&#9654;</span>
+          <span class="tour-cta-txt">Start Guided 3D Tour</span>
+          <span class="tour-cta-badge">7 highlights</span>
+        </button>
+      </div>
       <div class="tour" id="tour">
         <div class="n" id="tourN"></div><h4 id="tourH"></h4><p id="tourP"></p>
         <div class="row">
@@ -447,10 +471,10 @@ code{font-family:var(--f-mono);font-size:11px;background:var(--surface-2);paddin
     <aside class="rail right" id="panelProperty" aria-hidden="true" inert>
       <div class="rail-head"><strong>Property details</strong><button class="panel-close" id="closeProperty" aria-label="Close property details">Close</button></div>
       <div class="rail-in">
-      <div class="grp"><h3>3D ULPIN property card</h3>
+      <div class="grp"><h3>3D SAI property card</h3>
         <div class="card-id" id="cardId"></div>
         <div class="idsplit"><div>P<b id="sP">&mdash;</b></div><div>Z<b id="sZ">&mdash;</b></div>
-          <div>L<b id="sL">&mdash;</b></div><div>U<b id="sU">&mdash;</b></div><div>K<b id="sK">&mdash;</b></div></div>
+          <div>U<b id="sU">&mdash;</b></div><div>D<b id="sD">&mdash;</b></div></div>
         <div class="chips" id="chips"></div>
         <dl class="spec" id="spec"></dl>
       </div>
@@ -507,7 +531,7 @@ code{font-family:var(--f-mono);font-size:11px;background:var(--surface-2);paddin
       <section><h4>Modelled for this demonstration</h4><ul>
         <li>The orthophoto is <b>rendered by code</b>, not photographed &mdash; so no licensed imagery is redistributed.</li>
         <li>Plot dimensions, tower footprint, unit layout and slab elevations are a plausible BKC-scale composite, not a surveyed building.</li>
-        <li>Parent parcel <code>27MH0BKC0G0114</code> is illustrative. <code>27</code> is Maharashtra's state code; the rest is not NIC-issued.</li>
+        <li>Parent parcel <code>27MH0BKC0G01H0</code> is illustrative. <code>27</code> is Maharashtra's state code; ground floor ends with <code>H0</code> in base-32; the rest is not NIC-issued.</li>
         <li>The permissible FSI of 4.00 and the 70 m height limit are indicative for a BKC-type commercial plot, not the sanctioned figures for any specific plot.</li>
         <li>Tunnel axis depth 20 m and the 6.35 m bore are representative of a deep TBM section, not MMRCL design data for this chainage.</li>
         <li>Owners, liens, easement parties and strata depths are indicative.</li>
@@ -553,12 +577,13 @@ function verifyId(s){
   for(var i=0;i<s.length;i++) if(symVal(s[i])<0) return {ok:false,why:"Illegal character."};
   var e=checkChar(s.slice(0,-1));
   if(e!==s.slice(-1)) return {ok:false,why:"Check character should be "+e+", not "+s.slice(-1)+"."};
-  if(s.length!==21) return {ok:true,warn:"Check character valid, but a full 3D ULPIN is 21 characters (14+1+2+3+1)."};
+  if(s.length!==18) return {ok:true,warn:"Check character valid, but a full 3D SAI is 18 characters (14+1+2+1)."};
   return {ok:true};
 }
 
 /* ═════ 2. SITE MODEL ═════ */
-var P="27MH0BKC0G0114", Z_GROUND=8.00;
+var PLOT_ULPIN="27MH0BKC0G01", Z_GROUND=8.00;
+var P=PLOT_ULPIN+"H0"; // Parent ULPIN at ground level (544 in Base-32 = H0)
 var PLINTH=0.45, GF_H=4.50, FL_H=3.15, N_FLOORS=14, SANCTIONED=13;
 var ROOF=PLINTH+GF_H+N_FLOORS*FL_H, ZONING=70.00;
 var PLOT={w:72,d:56}, BASE={w:66,d:50}, PODIUM={w:60,d:44}, PLATE={w:36,d:26}, CORE={w:10,d:8};
@@ -577,9 +602,9 @@ FSI.balA = FSI.permA - FSI.builtA;    FSI.bal = FSI.balA/PLOT_A;
 FSI.headroom = ZONING - ROOF;
 FSI.floorsLeft = FSI.balA/PLATE_A;
 
-var CLS={S:{name:"Surface parcel",css:"--z-s"},A:{name:"Above-ground unit",css:"--z-a"},
-  U:{name:"Underground unit",css:"--z-u"},I:{name:"Infrastructure",css:"--z-i"},
-  R:{name:"Air-rights",css:"--z-r"},C:{name:"Common / shared",css:"--z-c"}};
+var CLS={S:{name:"Surfaces (above, below, or on ground)",css:"--z-s"},
+  A:{name:"Air-rights",css:"--z-a"},
+  I:{name:"Infrastructure volume",css:"--z-i"}};
 function cv(n){ return getComputedStyle(document.documentElement).getPropertyValue(n).trim(); }
 
 var NB=[{x:-104,z:-108,w:62,d:76,h:42},{x:-104,z:0,w:64,d:56,h:58},{x:-104,z:108,w:58,d:72,h:34},
@@ -592,24 +617,62 @@ var VIA={x:-40,w:11,d:150,lo:12.00,hi:15.20};
 var viaOverlap=Math.max(0,Math.min(VIA.x+VIA.w/2,PLOT.w/2)-Math.max(VIA.x-VIA.w/2,-PLOT.w/2))*PLOT.d;
 
 var units=[];
+/* Base-32 encoding (digits 0-9 then A-V) */
+var B32="0123456789ABCDEFGHIJKLMNOPQRSTUV";
+function b32p2(n){ if(n<=0) return "00"; var s="",t=n; while(t>0){s=B32[t%32]+s;t=Math.floor(t/32);} while(s.length<2)s="0"+s; return s; }
+/* Floor code: Ground floor = 544 ("H0"). Basements < 544. Upper floors > 544 */
+function floorP(code){
+  var val=544;
+  if(code==="B2"||code==="GU") val=542; // "GU"
+  else if(code==="B1"||code==="GV") val=543; // "GV"
+  else if(code==="G0"||code==="GF"||code==="H0"||code===0) val=544; // "H0"
+  else if(typeof code==="number" && code>=1 && code<=14) val=544+code; // H1..HE
+  else if(typeof code==="string" && /^H[1-9A-E]$/.test(code)) val=544+parseInt(code.slice(1), 16);
+  else if(code==="ROOF"||code==="HF"||code===15) val=544+15; // "HF"
+  else if(code==="HG"||code==="AIR1"||code==="H6"||code===16) val=544+16; // "HG"
+  else if(code==="HH"||code==="AIR2"||code==="H7"||code===17) val=544+17; // "HH"
+  else if(code==="TUNNEL"||code==="GQ") val=538; // "GQ" (-20m depth)
+  else if(code==="PIPE") val=543; // "GV" (-2m depth)
+  else if(code==="VIA"||code==="H4") val=548; // "H4" (+13m viaduct)
+  return PLOT_ULPIN+b32p2(val);
+}
+function pad2(n){ n=String(n); while(n.length<2) n="0"+n; return n; }
+function floorLo(k){ return PLINTH+GF_H+(k-1)*FL_H; }
 function mk(o){
-  o.P=P; o.payload=P+o.Z+o.L+o.U; o.K=checkChar(o.payload);
-  o.id=o.payload+o.K; o.pretty=P+"-"+o.Z+"-"+o.L+"-"+o.U+"-"+o.K;
+  if(!o.P){
+    if(o.flat) o.P=floorP("G0");
+    else if(o.floorK) o.P=floorP(o.floorK);
+    else if(o.bsmtLvl) o.P=floorP(o.bsmtLvl);
+    else if(o.tunnel) o.P=floorP("TUNNEL");
+    else if(o.pipe) o.P=floorP("PIPE");
+    else if(o.clips) o.P=floorP("VIA");
+    else if(o.air) o.P=floorP(o.airBand===2?"HH":"HG");
+    else if(o.label&&o.label.indexOf("Terrace")>=0) o.P=floorP("ROOF");
+    else o.P=floorP("G0");
+  }
+  if(!o.U){
+    if(o.ringI!==undefined) o.U=pad2(o.ringI+1);
+    else if(o.bayN!==undefined) o.U=pad2(o.bayN);
+    else if(o.retailN!==undefined) o.U=pad2(o.retailN);
+    else if(o.shell||o.flat||(o.label&&o.label.indexOf("Lift core")>=0)||(o.label&&o.label.indexOf("Terrace")>=0)||(o.label&&o.label.indexOf("Entrance lobby")>=0)) o.U="00";
+    else o.U="01";
+  }
+  o.payload=o.P+o.Z+o.U;
+  o.D=checkChar(o.payload);
+  o.id=o.payload+o.D;
+  o.pretty=o.id;
   o.mslLo=Z_GROUND+o.lo; o.mslHi=Z_GROUND+o.hi; o.volume=o.area*(o.hi-o.lo);
   units.push(o); return o;
 }
-function floorLo(k){ return PLINTH+GF_H+(k-1)*FL_H; }
-function pad3(n){ n=String(n); while(n.length<3) n="0"+n; return n; }
-function pad2(n){ n=String(n); while(n.length<2) n="0"+n; return n; }
 
-mk({Z:"S",L:"G0",U:"000",label:"Land parcel, BKC G-Block",lo:-100,hi:300,area:PLOT_A,
+mk({Z:"S",label:"Land parcel, BKC G-Block",lo:-100,hi:300,area:PLOT_A,
   grade:"A",status:"registered",acc:0.08,src:"Cadastral polygon, three corners RTK-checked via SoI CORS",
   box:{x:0,y:-0.04,z:0,w:PLOT.w,h:0.08,d:PLOT.d},flat:true,
   rrr:[["Freehold","MMRDA","100%"],["Lease, 60 yr","Meridian Estates Pvt Ltd","100%"]]});
 
 var BSMT=[{c:"B2",lo:-6.80,hi:-3.60},{c:"B1",lo:-3.40,hi:-0.20}];
 BSMT.forEach(function(b){
-  mk({Z:"C",L:b.c,U:"000",label:"Basement "+b.c+" — ramps, circulation, services",lo:b.lo,hi:b.hi,
+  mk({Z:"S",bsmtLvl:b.c,label:"Basement "+b.c+" — ramps, circulation, services",lo:b.lo,hi:b.hi,
     area:BASE.w*BASE.d-24*12.5,grade:"B",status:"registered",acc:0.14,
     src:"Sanctioned basement plan; plinth transferred down the ramp by digital level",
     box:{x:0,y:(b.lo+b.hi)/2,z:0,w:BASE.w,h:b.hi-b.lo,d:BASE.d},shell:true,
@@ -618,7 +681,7 @@ BSMT.forEach(function(b){
   [-13.5,13.5].forEach(function(zz){
     for(var i=0;i<12;i++){
       var odd=(b.c==="B2"&&n===17), w=odd?2.10:2.50, dd=odd?4.00:5.00;
-      mk({Z:"U",L:b.c,U:pad3(n),label:"Parking bay "+b.c+"-"+pad2(n),lo:b.lo,hi:b.lo+2.60,area:w*dd,
+      mk({Z:"S",bsmtLvl:b.c,bayN:n,label:"Parking bay "+b.c+"-"+pad2(n),lo:b.lo,hi:b.lo+2.60,area:w*dd,
         grade:"B",status:"registered",acc:0.18,anomaly:odd,src:"Basement marking plan, 10% field-sampled",
         box:{x:-15+i*2.75,y:b.lo+1.30,z:zz,w:w,h:2.6,d:dd},
         rrr:[["Exclusive right of use","Allottee, society register","100%"]]});
@@ -628,39 +691,40 @@ BSMT.forEach(function(b){
 });
 
 var GF_LO=PLINTH, GF_HI=PLINTH+GF_H;
-[["001","Retail G-1",-22,14],["002","Retail G-2",-6,14],["003","Retail G-3",10,14],["004","Retail G-4",24,10]]
-.forEach(function(r){
-  mk({Z:"A",L:"G0",U:r[0],label:r[1],lo:GF_LO,hi:GF_HI,area:r[3]*20*0.93,gross:r[3]*20,
+["Retail G-1","Retail G-2","Retail G-3","Retail G-4"]
+.forEach(function(lbl,ri){
+  var xs=[-22,-6,10,24], ws=[14,14,14,10];
+  mk({Z:"S",retailN:ri+1,label:lbl,lo:GF_LO,hi:GF_HI,area:ws[ri]*20*0.93,gross:ws[ri]*20,
     grade:"B",status:"registered",acc:0.21,
     src:"Sanctioned plan georeferenced to drone wall outline, residual 0.18 m",
-    box:{x:r[2],y:(GF_LO+GF_HI)/2,z:0,w:r[3],h:GF_H,d:20},
+    box:{x:xs[ri],y:(GF_LO+GF_HI)/2,z:0,w:ws[ri],h:GF_H,d:20},
     rrr:[["Ownership","Meridian Estates Pvt Ltd","100%"],["Lease","Retail tenant","—"]]});
 });
-mk({Z:"C",L:"G0",U:"000",label:"Entrance lobby, drop-off, plant room",lo:GF_LO,hi:GF_HI,
+mk({Z:"S",label:"Entrance lobby, drop-off, plant room",lo:GF_LO,hi:GF_HI,
   area:PODIUM_A-4*260,grade:"B",status:"registered",acc:0.21,src:"Sanctioned plan",shell:true,
   box:{x:0,y:(GF_LO+GF_HI)/2,z:0,w:PODIUM.w,h:GF_H,d:PODIUM.d},
   rrr:[["Responsibility — maintenance","BKC G-114 Premises Society","—"]]});
 
-var RING=[{u:"001",x:-12,z:8.5,w:12,d:9},{u:"002",x:0,z:8.5,w:12,d:9},{u:"003",x:12,z:8.5,w:12,d:9},
-  {u:"004",x:11.5,z:0,w:13,d:8},{u:"005",x:0,z:-8.5,w:12,d:9},{u:"006",x:-12,z:-8.5,w:12,d:9},
-  {u:"007",x:12,z:-8.5,w:12,d:9},{u:"008",x:-11.5,z:0,w:13,d:8}];
+var RING=[{x:-12,z:8.5,w:12,d:9},{x:0,z:8.5,w:12,d:9},{x:12,z:8.5,w:12,d:9},
+  {x:11.5,z:0,w:13,d:8},{x:0,z:-8.5,w:12,d:9},{x:-12,z:-8.5,w:12,d:9},
+  {x:12,z:-8.5,w:12,d:9},{x:-11.5,z:0,w:13,d:8}];
 var totalCarpet = 0;
 for(var k=1;k<=N_FLOORS;k++){
   (function(k){
-    var lo=floorLo(k), hi=lo+FL_H, L=pad2(k), uns=k>SANCTIONED;
-    RING.forEach(function(r){
-      var dupx=(k===9&&r.u==="004"), gold=(k===7&&r.u==="003"), top=dupx?hi+FL_H:hi;
+    var lo=floorLo(k), hi=lo+FL_H, Lk=pad2(k), uns=k>SANCTIONED;
+    RING.forEach(function(r,ri){
+      var dupx=(k===9&&ri===3), gold=(k===7&&ri===2), top=dupx?hi+FL_H:hi;
       var carpet=r.w*r.d*0.93; totalCarpet+=carpet;
-      mk({Z:"A",L:L,U:r.u,label:"Unit "+L+r.u.slice(1)+(dupx?" — declared duplex, span 2":""),
+      mk({Z:"S",floorK:k,ringI:ri,label:"Unit "+Lk+pad2(ri+1)+(dupx?" — declared duplex, span 2":""),
         lo:lo,hi:top,area:carpet,gross:r.w*r.d,grade:gold?"A":"B",
         status:uns?"unsanctioned":"registered",span:dupx?2:1,conflict:dupx,acc:gold?0.09:0.21,
         src:gold?"Laser distance meter, 6 rooms, reconciled with plan (Δ 0.9%)"
                 :"Sanctioned plan georeferenced to drone wall outline, residual 0.18 m",
         box:{x:r.x,y:(lo+top)/2,z:r.z,w:r.w,h:top-lo,d:r.d},
-        owner:"Owner "+L+r.u.slice(1),
+        owner:"Owner "+Lk+pad2(ri+1),
         rrr:[]});
     });
-    mk({Z:"C",L:L,U:"001",label:"Lift core, stair, lobby — level "+L,lo:lo,hi:hi,area:CORE.w*CORE.d,
+    mk({Z:"S",floorK:k,label:"Lift core, stair, lobby — level "+Lk,lo:lo,hi:hi,area:CORE.w*CORE.d,
       grade:"B",status:uns?"unsanctioned":"registered",acc:0.21,src:"Sanctioned plan",
       box:{x:0,y:(lo+hi)/2,z:0,w:CORE.w,h:FL_H,d:CORE.d},owner:"BKC G-114 Premises Society",
       rrr:[["Responsibility — maintenance","BKC G-114 Premises Society","—"]]});
@@ -668,63 +732,65 @@ for(var k=1;k<=N_FLOORS;k++){
 }
 /* undivided share of land is proportional to carpet area — the Apartment Ownership Act model */
 units.forEach(function(u){
-  if(u.Z==="A" && u.L!=="G0"){
+  if(u.floorK && !u.shell){
     var uds=(u.area/totalCarpet*100);
     u.uds=uds;
     u.rrr=[["Ownership",u.owner,"100%"],
-           ["Undivided share of "+P+"-S-G0-000","same",uds.toFixed(2)+"%"],
+           ["Undivided share of "+P+"S00","same",uds.toFixed(2)+"%"],
            ["Mortgage — restriction","Kotak Mahindra Bank","lien"]];
   }
 });
 
-mk({Z:"C",L:"R1",U:"000",label:"Terrace, tanks, lift machine room",lo:ROOF,hi:ROOF+3,area:PLATE_A,
+mk({Z:"S",label:"Terrace, tanks, lift machine room",lo:ROOF,hi:ROOF+3,area:PLATE_A,
   grade:"B",status:"registered",acc:0.14,src:"Drone DSM, 90th percentile, parapet removed",
   box:{x:0,y:ROOF+1.5,z:0,w:PLATE.w,h:3,d:PLATE.d},owner:"BKC G-114 Premises Society",
   rrr:[["Responsibility — maintenance","BKC G-114 Premises Society","—"]]});
 
-[["H6",52.05,60.00],["H7",60.00,70.00]].forEach(function(b,i){
-  mk({Z:"R",L:b[0],U:"001",label:"Air-rights band "+b[1].toFixed(0)+"–"+b[2].toFixed(0)+" m",
-    lo:b[1],hi:b[2],area:PLOT_A,grade:"C",status:i?"provisional":"registered",acc:0.08,
-    src:"Computed: plot polygon × (roof elevation → zoning height limit)",
-    box:{x:0,y:(b[1]+b[2])/2,z:0,w:PLOT.w,h:b[2]-b[1],d:PLOT.d},air:true,
+[[52.05,60.00],[60.00,70.00]].forEach(function(b,i){
+  mk({Z:"A",airBand:i+1,label:"Air-rights band "+b[0].toFixed(0)+"\u2013"+b[1].toFixed(0)+" m",
+    lo:b[0],hi:b[1],area:PLOT_A,grade:"C",status:i?"provisional":"registered",acc:0.08,
+    src:"Computed: plot polygon \u00d7 (roof elevation \u2192 zoning height limit)",
+    box:{x:0,y:(b[0]+b[1])/2,z:0,w:PLOT.w,h:b[1]-b[0],d:PLOT.d},air:true,
     owner:i?"Unallotted":"Meridian Estates Pvt Ltd",
-    rrr:[["Development right",i?"Unallotted":"Meridian Estates Pvt Ltd",i?"—":"100%"],
-         ["Transferable floor area in this column","—",FSI.balA.toFixed(0)+" m² total"]]});
+    rrr:[["Development right",i?"Unallotted":"Meridian Estates Pvt Ltd",i?"\u2014":"100%"],
+         ["Transferable floor area in this column","\u2014",FSI.balA.toFixed(0)+" m\u00b2 total"]]});
 });
 
-[["001",-TUN_OFF,"up"],["002",TUN_OFF,"down"]].forEach(function(t){
-  mk({Z:"I",L:"D2",U:t[0],label:"Metro Line 3 running tunnel, "+t[2]+" line",
+[[-TUN_OFF,"up",1],[TUN_OFF,"down",2]].forEach(function(t){
+  mk({Z:"I",U:pad2(t[2]),label:"Metro Line 3 running tunnel, "+t[1]+" line",
     lo:TUN_Y-TUN_R,hi:TUN_Y+TUN_R,area:Math.PI*TUN_R*TUN_R,grade:"A",status:"registered",acc:0.10,
-    src:"As-built TBM alignment; shaft and portal positions RTK-verified",tunnel:{off:t[1]},
+    src:"As-built TBM alignment; shaft and portal positions RTK-verified",tunnel:{off:t[0]},
     owner:"Mumbai Metro Rail Corporation",
-    rrr:[["Easement over "+P,"Mumbai Metro Rail Corporation","depth 16.8–23.2 m"]]});
+    rrr:[["Easement over "+P,"Mumbai Metro Rail Corporation","depth 16.8\u201323.2 m"]]});
 });
-mk({Z:"I",L:"H2",U:"001",label:"Metro Line 2B elevated viaduct deck",lo:VIA.lo,hi:VIA.hi,
+mk({Z:"I",label:"Metro Line 2B elevated viaduct deck",lo:VIA.lo,hi:VIA.hi,
   area:VIA.w*VIA.d,grade:"A",status:"registered",acc:0.09,clips:true,
   src:"As-built structural drawings; pier positions RTK-verified",owner:"MMRDA",
   box:{x:VIA.x,y:(VIA.lo+VIA.hi)/2,z:0,w:VIA.w,h:VIA.hi-VIA.lo,d:VIA.d},
-  rrr:[["Easement over "+P,"MMRDA",viaOverlap.toFixed(0)+" m² of air column"]]});
-mk({Z:"I",L:"D1",U:"001",label:"600 mm ductile-iron water main",lo:-2.10,hi:-1.50,area:0.6*80,
+  rrr:[["Easement over "+P,"MMRDA",viaOverlap.toFixed(0)+" m\u00b2 of air column"]]});
+mk({Z:"I",label:"600 mm ductile-iron water main",lo:-2.10,hi:-1.50,area:0.6*80,
   grade:"C",status:"registered",acc:0.30,src:"Utility as-built drawing, GPR sweep, one trial pit",pipe:true,
   owner:"Municipal Corporation of Greater Mumbai",
-  rrr:[["Easement","Municipal Corporation of Greater Mumbai","depth 1.5–2.1 m"]]});
+  rrr:[["Easement","Municipal Corporation of Greater Mumbai","depth 1.5\u20132.1 m"]]});
 
 /* ═════ 3. RULE ENGINE ═════ */
 var dupx=units.filter(function(u){return u.conflict;})[0];
 var overlapVol=dupx?dupx.area*FL_H:0;
 var nUns=units.filter(function(u){return u.status==="unsanctioned";}).length;
 var used=RING.reduce(function(s,r){return s+r.w*r.d*0.93;},0)+CORE.w*CORE.d;
+var _viaUnit=units.filter(function(u){return u.label&&u.label.indexOf("viaduct")>=0;})[0];
+var _anomUnit=units.filter(function(u){return u.anomaly;})[0];
 var ISSUES=[
  {sev:"hard",rule:"Rule 1",act:"Blocks registration",h:"Two volumes occupy the same space",
-  p:"<code>"+(dupx?dupx.pretty:"")+"</code> is declared a duplex spanning levels 09–10, but level 10 unit 004 is separately allotted. Exact 3D intersection returns <b>"+overlapVol.toFixed(1)+" m³</b> of shared volume against a 0.05 m³ tolerance."},
+  p:"<code>"+(dupx?dupx.pretty:"")+"</code> is declared a duplex spanning levels 09–10, but level 10 unit 04 is separately allotted. Exact 3D intersection returns <b>"+overlapVol.toFixed(1)+" m³</b> of shared volume against a 0.05 m³ tolerance."},
  {sev:"hard",rule:"Rule 9",act:"Blocks registration",h:"Class must agree with measured geometry",
-  p:"Any volume carrying Z-class <code>U</code> has to sit below the plinth. Class is re-checked against elevation on every geometry version, so a mis-typed level cannot survive an import."},
+  p:"Z-class (S, A, I) must strictly agree with measured 3D elevations. Volumes with Z-class <code>A</code> (Air-rights) must sit above certified roof elevation within the statutory zoning ceiling, while physical structures must be classified as <code>S</code> (Surfaces)."},
  {sev:"warn",rule:"Rule 8",act:"ULB notice",h:"Façade floor count exceeds the sanctioned plan",
   p:"Oblique-image floor lines return 14 storeys; the plan shows "+SANCTIONED+". The <b>"+nUns+" volumes on level 14</b> get IDs with status <code>unsanctioned</code>. They also consumed <b>"+FSI.unauthA.toFixed(0)+" m² of FSI</b> that was never granted — see the FSI tab."},
  {sev:"warn",rule:"Rule 2",act:"Easement required",h:"Infrastructure crosses the plot air column",
-  p:"The Line 2B viaduct deck <code>I-H2-001</code> overhangs <b>"+viaOverlap.toFixed(0)+" m²</b> of this parcel between +12.00 and +15.20 m. Registered as an easement on the parent, not as an encroachment."},
+  p:"The Line 2B viaduct deck <code>"+(_viaUnit?_viaUnit.pretty:"")+"</code> overhangs <b>"+viaOverlap.toFixed(0)+" m²</b> of this parcel between +12.00 and +15.20 m. Registered as an easement on the parent, not as an encroachment."},
  {sev:"warn",rule:"Rule 6",act:"Officer review",h:"Anomalous unit flagged by the isolation forest",
-  p:"Parking bay <code>U-B2-017</code> measures 8.4 m² against a 12.5 m² median across 48 bays — most likely a marking-plan scale error rather than a real bay."},
+  p:"Parking bay <code>"+(_anomUnit?_anomUnit.pretty:"")+"</code> measures 8.4 m² against a 12.5 m² median across 48 bays — most likely a marking-plan scale error rather than a real bay."},
  {sev:"ok",rule:"Rule 4",act:"Passes",h:"Floor-plate accounting balances",
   p:"Units plus common area on a typical level total <b>"+used.toFixed(0)+" m²</b> against a "+PLATE_A+" m² plate — <b>"+(100*used/PLATE_A).toFixed(1)+"%</b>. Under the 100% ceiling and above the 85% floor."},
  {sev:"ok",rule:"Rule 5",act:"Passes",h:"No underground clash",
@@ -884,16 +950,16 @@ var STEPS=[
   ["Façade line detection on oblique frames"],["14 spacings found · median 3.15 m","k"],
   ["Plinth RTK fix → 8.45 m MSL; slabs stacked from plinth"],
   ["sanctioned plan declares 13 floors — mismatch of 1","w"]]},
- {t:"Allot whole-level IDs",log:[["Vertical stack: B2 B1 G0 01…14 R1"],
-  ["S, C and whole-level volumes allotted"],["19 provisional IDs","k"]]},
+ {t:"Allot whole-level IDs",log:[["Vertical stack: B2 (GU), B1 (GV), G0 (H0), 01–14 (H1–HE), Roof (HF)"],
+  ["S, A, and I volumetric cadastre levels allotted"],["19 provisional IDs","k"]]},
  {t:"Import sanctioned plan",log:[["Vectorising MahaRERA plan PDF · wall detection · OCR on labels"],
   ["Scale calibration from 3 dimension strings · agreement 0.4%","k"],["Best-fit onto measured wall outline"],
   ["georeferencing residual 0.18 m — inside the 0.30 m gate","k"],
   ["Carpet / built-up split per RERA; balconies held separately"]]},
  {t:"Build solids & allot unit IDs",log:[["Extruding unit polygons between slab elevations"],
-  ["Allotting (Z, L, U) · label-derived numbering"],["Computing base-36 Luhn check characters"],
+  ["Allotting 18-char SAI (P-Z-U-D) · label-derived numbering"],["Computing base-36 Luhn check characters"],
   ["189 identifiers allotted in 0.41 s","k"]]},
- {t:"Compute the development envelope",log:[["Zoning height limit +70.00 m → air-rights bands H6, H7"],
+ {t:"Compute the development envelope",log:[["Zoning height limit +70.00 m → air-rights bands HG, HH"],
   ["Permissible FSI 4.00 × 4,032 m² = 16,128 m²"],
   ["as-built consumption 15,744 m² · FSI 3.905","w"],
   ["balance 384 m² — only 0.41 of a floor plate","w"],
@@ -911,7 +977,7 @@ var STEPS=[
   ["Daily fingerprint root sealed — silent edits become detectable","k"],
   ["Publishing 3D Tiles, CityJSON and the property-card service"],["Volumetric cadastre online","k"]]}
 ];
-var stage=0, pTimer=null, pT0=0;
+var stage=0, pTimer=null, pT0=0, tourSeen=false;
 function setStage(n){
   stage=n;
   ["stg0","stg1","stg2"].forEach(function(id,i){ $(id).classList.toggle("live",i===n); });
@@ -919,8 +985,29 @@ function setStage(n){
     if(!el.dataset||el.dataset.s===undefined) return;
     var i=+el.dataset.s; el.classList.toggle("on",i===n); el.classList.toggle("done",i<n);
   });
-  if(n===0){ cancelAnimationFrame(oRAF); orthoLoop(); }
-  if(n===2){ setTimeout(resize,40); setTimeout(resize,340); }
+  $("deck").style.display=(n===2)?"":"none";
+  if(n===0){
+    tourSeen=false;
+    $("btnTour").style.display="none";
+    if(typeof resetIssues==="function") resetIssues();
+    if($("tourCta")) $("tourCta").classList.remove("on");
+    cancelAnimationFrame(oRAF); orthoLoop();
+  }
+  if(n===1){
+    $("btnTour").style.display="none";
+    if($("tourCta")) $("tourCta").classList.remove("on");
+  }
+  if(n===2){
+    if(typeof populateIssues==="function") populateIssues();
+    if(!tourSeen){
+      $("btnTour").style.display="none";
+      if($("tourCta") && tourI<0) $("tourCta").classList.add("on");
+    } else {
+      $("btnTour").style.display="";
+      if($("tourCta")) $("tourCta").classList.remove("on");
+    }
+    setTimeout(resize,40); setTimeout(resize,340);
+  }
 }
 function runPipeline(){
   if(stage!==0) return;
@@ -962,7 +1049,7 @@ function finishPipeline(){
   if(!RM) setTimeout(enterViewer,1200); else enterViewer();
 }
 $("pSkip").onclick=function(){ if(stage===1) finishPipeline(); };
-$("btnRestart").onclick=function(){ clearTimeout(pTimer); endTour(); setStage(0); };
+$("btnRestart").onclick=function(){ clearTimeout(pTimer); endTour(); SC.anno=false; syncTog(); setStage(0); };
 function enterViewer(){
   if(stage===2) return;
   clearTimeout(pTimer); setStage(2);
@@ -1135,8 +1222,8 @@ function addMesh(u){
     side:(u.tunnel||u.shell||u.air)?THREE.DoubleSide:THREE.FrontSide,
     depthWrite:solid
   });
-  // glazing only on the tower's private units
-  if(u.Z==="A" && u.L!=="G0"){
+  // glazing only on the tower's private floor units
+  if(u.floorK && !u.shell){
     var t=glazing.clone(); t.repeat.set(u.box.w/6.5,u.box.h/3.2); t.needsUpdate=true; mat.map=t;
   }
   var mesh=new THREE.Mesh(geo,mat);
@@ -1191,8 +1278,8 @@ function repaint(){
   setSun(+$("sun").value);
 }
 
-var layerOn={S:true,A:true,U:true,I:true,R:true,C:true};
-var SC={ctx:true,soil:true,ortho:true,env:true,anno:true};
+var layerOn={S:true,A:true,I:true};
+var SC={ctx:true,soil:true,ortho:true,env:true,anno:false};
 var isolateL=null, focusSet=null, showBase=true, dynAnno=[];
 var dimGrp=new THREE.Group(); root.add(dimGrp);
 function baseOp(u){ return u.air?0.20:(u.shell?0.26:(u.flat?0.55:0.94)); }
@@ -1233,42 +1320,47 @@ function showDims(u){
   dynAnno.push({t:"carpet "+u.area.toFixed(1)+" m² · grade "+u.grade+" · ±"+u.acc.toFixed(2)+" m",
     p:[b.x,b.y+hh+1.8,b.z],c:"--z-a",dim:1});
 }
-function labelLevel(L){
+function labelLevel(k){
   dynAnno=dynAnno.filter(function(a){ return !a.lvl; });
-  if(!L) return;
+  if(!k) return;
   units.forEach(function(u){
-    if(u.L!==L||!u.box||(u.Z!=="A"&&u.Z!=="C")) return;
-    dynAnno.push({t:u.Z+"-"+u.L+"-"+u.U+" · "+u.area.toFixed(0)+" m²",
+    if(u.floorK!==k||!u.box||u.shell) return;
+    dynAnno.push({t:(u.label?u.label.split(' — ')[0]:"Unit "+u.U)+" \u00b7 "+u.area.toFixed(0)+" m\u00b2",
       p:[u.box.x,u.box.y+u.box.h/2+0.4,u.box.z],c:CLS[u.Z].css,lvl:1});
   });
 }
-var LORD=["B2","B1","G0","01","02","03","04","05","06","07","08","09","10","11","12","13","14","R1"];
+var LORD=["bsmt2","bsmt1","gf","01","02","03","04","05","06","07","08","09","10","11","12","13","14","roof"];
 function lidx(u){
-  var i=LORD.indexOf(u.L); if(i>=0) return i;
-  if(u.Z==="R") return LORD.length;
-  if(u.L[0]==="D") return 0;
-  return LORD.indexOf("04");
+  if(u.flat) return -1;
+  if(u.air) return LORD.length;
+  if(u.pipe||u.tunnel) return 0;
+  if(u.bsmtLvl==="B2"||(!u.floorK&&u.lo<-3)) return 0;
+  if(u.bsmtLvl==="B1"||(!u.floorK&&u.lo<0)) return 1;
+  if(u.floorK) return 2+u.floorK;
+  if(u.label&&u.label.indexOf("Terrace")>=0) return LORD.length-1;
+  if(u.label&&u.label.indexOf("lobby")>=0&&u.lo<2) return 2;
+  return 2;
 }
 var cutAt=LORD.length-1;
 function applyVis(){
   units.forEach(function(u){
-    var v=layerOn[u.Z]&&(lidx(u)<=cutAt||u.Z==="S"||u.Z==="I");
-    if(isolateL) v=layerOn[u.Z]&&(u.L===isolateL);
+    var v=layerOn[u.Z]&&(lidx(u)<=cutAt||u.flat||u.Z==="I");
+    if(isolateL) v=layerOn[u.Z]&&(u.floorK===isolateL);
     u.mesh.visible=v; u.edges.visible=v;
   });
   slabGrp.children.forEach(function(s){
     if(!s.userData.slab) return;
-    s.visible=isolateL?(pad2(s.userData.slab)===isolateL):((s.userData.slab+1)<=cutAt);
+    s.visible=isolateL?(s.userData.slab===isolateL):((s.userData.slab+1)<=cutAt);
   });
   podiumBand.visible=!isolateL;
   parapet.visible=!isolateL&&cutAt>=LORD.length-1;
-  envGrp.visible=SC.env&&layerOn.R&&!isolateL;
+  envGrp.visible=SC.env&&layerOn.A&&!isolateL;
   if(selected){ selected.mesh.visible?placeHalo(selected):(halo.visible=false); }
 }
 var explode=0;
 function applyExplode(){
   units.forEach(function(u){
-    if(u.tunnel||u.pipe||u.Z==="S") return;
+    if(u.tunnel||u.pipe||u.flat) return;
     var dy=(lidx(u)-2)*explode*0.08;
     u.mesh.position.y=u.baseY+dy; u.edges.position.y=u.baseY+dy;
   });
@@ -1347,7 +1439,7 @@ function placeHalo(u){
 }
 function riseIn(){
   var t0=performance.now(),D=1500;
-  var list=units.filter(function(u){ return !u.tunnel&&!u.pipe&&u.Z!=="S"; });
+  var list=units.filter(function(u){ return !u.tunnel&&!u.pipe&&!u.flat; });
   list.forEach(function(u){ u.mesh.visible=false; u.edges.visible=false; });
   slabGrp.visible=false; envGrp.visible=false;
   (function step(){
@@ -1368,12 +1460,12 @@ var ANNO=[
   {t:"Metro Line 3 · twin bore · −20.0 m",p:[0,TUN_Y+TUN_R+1,0],c:"--z-i"},
   {t:"Cross-passage",p:[0,TUN_Y-4.5,0],c:"--z-i"},
   {t:"Water main · −1.8 m",p:[26,PIPE_Y+1.4,-18],c:"--z-i"},
-  {t:"Basements B1 / B2 · 48 bays",p:[-34,-5.2,0],c:"--z-u"},
+  {t:"Basements B1 / B2 \u00b7 48 bays",p:[-34,-5.2,0],c:"--z-s"},
   {t:"Line 2B viaduct · +12.0 m",p:[VIA.x,VIA.hi+2.6,42],c:"--z-i"},
-  {t:"Zoning height limit +70.00 m",p:[0,ZONING+2.5,0],c:"--z-r"},
+  {t:"Zoning height limit +70.00 m",p:[0,ZONING+2.5,0],c:"--z-a"},
   {t:"Buildable balance · 384 m² · 0.41 floor",p:[0,ROOF+3+FL_H+2,0],c:"--ok"},
-  {t:"Roof +49.05 m · 14 storeys",p:[24,ROOF+0.5,-16],c:"--z-a"},
-  {t:"Basalt — Deccan trap",p:[-92,-24,60],c:"--z-u"}
+  {t:"Roof +49.05 m · 14 storeys",p:[24,ROOF+0.5,-16],c:"--z-s"},
+  {t:"Basalt \u2014 Deccan trap",p:[-92,-24,60],c:"--fg-3"}
 ];
 var annoPool=[], annoLast=[], v3=new THREE.Vector3();
 function updateAnnos(){
@@ -1444,7 +1536,7 @@ var counts={}; units.forEach(function(u){ counts[u.Z]=(counts[u.Z]||0)+1; });
   });
 })();
 var NOTES={
-  class:"Tinted by Z-class. Air-rights volumes are drawn pale and luminous because nothing is built there yet — they are a right, not a structure.",
+  class:"Tinted by Z-class. Built surfaces (S) across ground, basements, and upper floors, air-rights (A) envelopes, and infrastructure (I) corridors are each coloured distinctly.",
   grade:"Tinted by accuracy grade. A is field-measured; B is a sanctioned plan georeferenced to the drone footprint; C is drone-only estimation; D is design data for something not yet built.",
   issue:"Tinted by validation outcome. Red blocks registration, amber needs an officer, green passes every rule."
 };
@@ -1516,22 +1608,6 @@ $("pullR").onclick=function(){
 };
 $("closeLayers").onclick=function(){ setSidePanel("left",false); $("pullL").focus(); };
 $("closeProperty").onclick=function(){ setSidePanel("right",false); $("pullR").focus(); };
-var panelsBeforeFocus=null;
-$("btnFocus").onclick=function(){
-  var on=this.getAttribute("aria-pressed")!=="true";
-  this.setAttribute("aria-pressed",on?"true":"false");
-  if(on){
-    panelsBeforeFocus={left:sideIsOpen("left"),right:sideIsOpen("right"),deck:deckIsOpen()};
-    setSidePanel("left",false); setSidePanel("right",false); deckOverride="closed"; setDeck(false);
-  }else if(panelsBeforeFocus){
-    setSidePanel("left",panelsBeforeFocus.left); setSidePanel("right",panelsBeforeFocus.right);
-    deckOverride=panelsBeforeFocus.deck?"open":"closed"; setDeck(panelsBeforeFocus.deck); panelsBeforeFocus=null;
-  }
-};
-$("btnFull").onclick=function(){
-  if(!document.fullscreenElement)(document.documentElement.requestFullscreen||function(){}).call(document.documentElement);
-  else document.exitFullscreen();
-};
 
 function statusChip(s){
   var m={registered:["st-reg","Registered"],provisional:["st-prov","Provisional"],unsanctioned:["st-uns","Unsanctioned"]};
@@ -1540,18 +1616,18 @@ function statusChip(s){
 function row(a,b){ return "<dt>"+a+"</dt><dd>"+b+"</dd>"; }
 function select(u){
   selected=u; placeHalo(u);
-  $("cardId").innerHTML='<span class="p">'+u.P+'</span>-'+u.Z+'-'+u.L+'-'+u.U+'-<span class="k">'+u.K+'</span>';
-  $("sP").textContent="14"; $("sZ").textContent=u.Z; $("sL").textContent=u.L;
-  $("sU").textContent=u.U; $("sK").textContent=u.K;
+  $("cardId").innerHTML='<span class="p">'+u.P+'</span><span class="z">'+u.Z+'</span><span class="u">'+u.U+'</span><span class="k">'+u.D+'</span>';
+  $("sP").textContent=u.P.slice(-2); $("sZ").textContent=u.Z;
+  $("sU").textContent=u.U; $("sD").textContent=u.D;
   $("chips").innerHTML='<span class="chip cls" style="background:var('+CLS[u.Z].css+')">'+CLS[u.Z].name+'</span>'+
     '<span class="chip grade">Grade '+u.grade+'</span>'+statusChip(u.status);
-  var s=row("Description",'<span style="font-family:var(--f-sans)">'+u.label+'</span>');
-  s+=row("Level code",u.L);
+  var s=row("Parent ULPIN",'<span style="font-family:var(--f-mono)">'+u.P+'</span> (level code '+u.P.slice(-2)+')');
+  s+=row("Description",'<span style="font-family:var(--f-sans)">'+u.label+'</span>');
   if(u.span===2) s+=row("Vertical span","2 floors");
   s+=row("Elevation, local",u.lo.toFixed(2)+" → "+u.hi.toFixed(2)+" m");
   s+=row("Elevation, MSL",u.mslLo.toFixed(2)+" → "+u.mslHi.toFixed(2)+" m");
   s+=row("Height",(u.hi-u.lo).toFixed(2)+" m");
-  s+=row(u.Z==="S"?"Plot area":(u.air?"Plan area":"Carpet area"),u.area.toFixed(1)+" m²");
+  s+=row(u.flat?"Plot area":(u.air?"Plan area":"Carpet area"),u.area.toFixed(1)+" m²");
   if(u.gross){
     s+=row("Built-up (incl. walls)",u.gross.toFixed(1)+" m²");
     s+=row("Carpet / built-up",(100*u.area/u.gross).toFixed(1)+"%");
@@ -1564,11 +1640,12 @@ function select(u){
   var r=luhn36(u.payload);
   $("vHd").innerHTML='<span class="tick">&#10003;</span> Valid — the '+u.payload.length+'-character payload folds to a multiple of 36';
   $("vCalc").textContent="payload  "+u.payload+"\nweighted sum, right→left ×2,×1…  "+r.sum+
-    "\nneed (36 − "+r.sum+" mod 36) mod 36 = "+r.need+" → '"+r.chr+"'\nfull ID  "+u.id+"   ("+u.id.length+" chars)";
+    "\nneed (36 − "+r.sum+" mod 36) mod 36 = "+r.need+" → '"+r.chr+"'\nfull ID  "+u.id+"   ("+u.id.length+" chars, SAI format)";
   $("idIn").value=u.id; checkInput();
   $("rrr").innerHTML=u.rrr.map(function(x){ return "<tr><td>"+x[0]+"</td><td>"+x[1]+"</td><td>"+x[2]+"</td></tr>"; }).join("");
   renderColumn(u);
 }
+window.select = select;
 function checkInput(){
   var v=$("idIn").value.trim();
   if(!v){ $("idOut").innerHTML=""; return; }
@@ -1594,45 +1671,63 @@ function coversPoint(u,x,z){
 }
 function renderColumn(sel){
   var x=sel.box?sel.box.x:0, z=sel.box?sel.box.z:0;
-  var col=units.filter(function(u){ return u.Z!=="S" && coversPoint(u,x,z); })
+  var col=units.filter(function(u){ return !u.flat && coversPoint(u,x,z); })
     .sort(function(a,b){ return a.lo-b.lo; });
   var owners={};
   col.forEach(function(u){ if(u.owner) owners[u.owner]=1; });
   var nOwn=Object.keys(owners).length;
   var html='<div class="colwrap"><div>' +
-    '<p class="note" style="margin:0 0 8px">Everything sharing the ground footprint of <code>'+sel.Z+'-'+sel.L+'-'+sel.U+
-    '</code>, deepest first. <b>'+col.length+' volumes, '+nOwn+' distinct owners</b> — one dot on a 2D map.</p><div class="stack">';
+    '<p class="note" style="margin:0 0 10px">Vertical stack sharing the ground footprint of <b>'+sel.label+'</b> (<code>'+sel.id+
+    '</code>), deepest first. <b>'+col.length+' volumetric cadastre units, '+nOwn+' distinct registered interests</b> &mdash; all collapsed into a single 2D cadastral point today.</p>' +
+    '<div style="overflow-x:auto;max-height:380px;overflow-y:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--surface)">' +
+    '<table class="col-table"><thead><tr>' +
+    '<th>Elevation</th><th>3D ULPIN</th><th>Architectural Space / Level</th><th>Class</th><th>Registered Owner / Interest</th>' +
+    '</tr></thead><tbody>';
+
   col.forEach(function(u){
-    html+='<div class="slice'+(u===sel?" me":"")+'">'+
-      '<span class="bd" style="background:var('+CLS[u.Z].css+')"></span>'+
-      '<span class="el">'+u.lo.toFixed(1)+' / '+u.hi.toFixed(1)+'</span>'+
-      '<span>'+u.label+'</span>'+
-      '<span class="ow">'+(u.owner||"—")+'</span></div>';
+    var isSel=(u===sel);
+    var elStr=(u.lo>=0?"+":"")+u.lo.toFixed(1)+" to "+(u.hi>=0?"+":"")+u.hi.toFixed(1)+" m";
+    var owName=u.owner || (u.shell ? "BKC G-114 Premises Society (Common)" : "Premises Society");
+    html+='<tr class="'+(isSel?"sel-row":"")+'" title="Click to inspect '+u.label+' in 3D">' +
+      '<td style="font-family:var(--f-mono);font-size:11px;white-space:nowrap;color:var(--fg-2)">'+elStr+'</td>' +
+      '<td><code style="font-size:10.5px;color:var(--fg);font-weight:600">'+u.id+'</code></td>' +
+      '<td><b>'+u.label+'</b></td>' +
+      '<td><span class="chip cls" style="padding:1px 6px;font-size:9.5px;background:var('+CLS[u.Z].css+')">'+u.Z+'</span></td>' +
+      '<td style="color:var(--fg-2)">'+owName+'</td>' +
+      '</tr>';
   });
-  html+='</div>';
+  html+='</tbody></table></div>';
+
   // encumbrances registered on the parcel but not directly in this column
   var elsewhere=units.filter(function(u){ return u.Z==="I" && col.indexOf(u)<0; });
   if(elsewhere.length){
-    html+='<p class="note" style="margin-top:10px"><b>Also on this parcel, but not in this column:</b> '+
-      elsewhere.map(function(u){ return u.label+' ('+u.owner+')'; }).join("; ")+
-      '. The engine distinguishes what lies directly beneath a unit from what merely burdens the parent parcel &mdash; a distinction a 2D record cannot make at all.</p>';
+    html+='<p class="note" style="margin-top:10px"><b>Also on this parcel, but not intersecting this column:</b> '+
+      elsewhere.map(function(u){ return '<b>'+u.label+'</b> (<code>'+u.id+'</code> &middot; '+u.owner+')'; }).join("; ")+
+      '. The engine accurately isolates what sits directly above or below a unit versus what merely burdens the parent parcel elsewhere.</p>';
   }
   html+='</div><div class="ba">'+
-    '<div class="b4"><h4>What the 2D record says today</h4><ul>'+
-    '<li>One parcel: <code>'+P+'</code></li>'+
-    '<li>One polygon, 4,032 m², one entry in the Record of Rights</li>'+
-    '<li>The flat is the text string &ldquo;'+sel.L+sel.U.slice(1)+', '+sel.area.toFixed(0)+' m²&rdquo; in a deed</li>'+
-    '<li>The tunnel, the water main and the viaduct are in three unconnected agencies&rsquo; drawings</li>'+
-    '<li>The air above the roof has no record at all</li>'+
-    '<li>A dispute starts with a fresh survey from zero</li></ul></div>'+
-    '<div class="af"><h4>What the 3D record says</h4><ul>'+
-    '<li>'+col.length+' identified volumes in this column alone, '+nOwn+' owners, each with geometry</li>'+
-    '<li>The flat is a solid from '+sel.mslLo.toFixed(2)+' to '+sel.mslHi.toFixed(2)+' m MSL, grade '+sel.grade+'</li>'+
-    '<li>Every easement is attached to the parent parcel with its depth band</li>'+
-    '<li>Air-rights are bands with an owner and a transferable floor area</li>'+
-    '<li>A dispute re-measures one unit; the audit trail keeps the rest</li>'+
-    '<li>The first 14 characters still read as the existing ULPIN &mdash; zero migration</li></ul></div></div></div>';
+    '<div class="b4"><h4>What 2D Land Records Say Today</h4><ul>'+
+    '<li>One 2D parcel: <code>'+P+'</code></li>'+
+    '<li>One flat polygon, 4,032 m², one entry in the Record of Rights</li>'+
+    '<li>The flat is merely a deed text description (&ldquo;'+sel.label.replace(/Unit /,'')+', '+sel.area.toFixed(0)+' m²&rdquo;) without volumetric coordinates</li>'+
+    '<li>Subsurface tunnels, utility pipes, and elevated viaducts are on separate paper drawings across disconnected agencies</li>'+
+    '<li>Unbuilt air rights above the roof have no statutory registry record</li>'+
+    '<li>Any boundary or encroachment dispute requires a complete re-survey from zero</li></ul></div>'+
+    '<div class="af"><h4>What 3D ULPIN Vertical Cadastre Records</h4><ul>'+
+    '<li><b>'+col.length+' distinct volumetric titles</b> in this column alone, each with exact 3D spatial boundaries</li>'+
+    '<li>Every unit carries an immutable 18-character 3D ULPIN (<code>'+sel.id+'</code>) valid offline</li>'+
+    '<li>Physical space runs from '+sel.mslLo.toFixed(2)+' to '+sel.mslHi.toFixed(2)+' m MSL with positional accuracy Grade '+sel.grade+'</li>'+
+    '<li>Civic infrastructure easements (Metro 3, water main, viaduct) are recorded with elevation bands</li>'+
+    '<li>Air-rights are formalized as statutory bands with defined transferable floor area (FSI)</li>'+
+    '<li>Disputes isolate and verify a single volume without freezing the rest of the building</li></ul></div></div></div>';
   $("p-col").innerHTML=html;
+
+  var tbody=$("p-col").querySelector("tbody");
+  if(tbody){
+    Array.prototype.forEach.call(tbody.children, function(tr, idx){
+      tr.onclick=function(){ select(col[idx]); };
+    });
+  }
 }
 
 /* ── FSI & air rights ── */
@@ -1659,13 +1754,23 @@ function renderColumn(sel){
     '</div></div>';
 })();
 
-$("p-issues").innerHTML=ISSUES.map(function(i){
-  return '<div class="issue"><div class="sev '+i.sev+'"></div><div class="rule">'+i.rule+'</div>'+
-    '<div class="body"><h4>'+i.h+'</h4><p>'+i.p+'</p></div><div class="act '+i.sev+'">'+i.act+'</div></div>';
-}).join("");
-$("issueCount").textContent=ISSUES.filter(function(i){return i.sev!=="ok";}).length;
+function populateIssues(){
+  $("p-issues").innerHTML=ISSUES.map(function(i){
+    return '<div class="issue"><div class="sev '+i.sev+'"></div><div class="rule">'+i.rule+'</div>'+
+      '<div class="body"><h4>'+i.h+'</h4><p>'+i.p+'</p></div><div class="act '+i.sev+'">'+i.act+'</div></div>';
+  }).join("");
+  var count=ISSUES.filter(function(i){return i.sev!=="ok";}).length;
+  $("issueCount").textContent=count;
+  $("issueCount").style.display=count>0?"inline-block":"none";
+}
+function resetIssues(){
+  $("p-issues").innerHTML='<div style="padding:16px;color:var(--fg-3);font-size:12px">No survey data yet. Click <b>Survey this parcel</b> to run topological and volumetric validation.</div>';
+  $("issueCount").textContent="0";
+  $("issueCount").style.display="none";
+}
+resetIssues();
 
-var DIG=units.filter(function(u){ return u.hi<0&&u.Z!=="U"; })
+var DIG=units.filter(function(u){ return u.hi<0&&!u.flat; })
   .map(function(u){ return {u:u,top:-u.hi,bot:-u.lo}; }).sort(function(a,b){ return a.top-b.top; });
 function renderDig(){
   var d=+$("digD").value;
@@ -1675,7 +1780,7 @@ function renderDig(){
     return '<div class="stratum'+(hit?"":" clear")+'">'+
       '<span class="d">'+s.top.toFixed(2)+'–'+s.bot.toFixed(2)+' m</span>'+
       '<span><span class="bar2" style="width:'+w+'%;background:var('+CLS[s.u.Z].css+')"></span>'+
-      '<span style="font-size:11.5px">'+s.u.label+' &nbsp;<code>'+s.u.Z+'-'+s.u.L+'-'+s.u.U+'</code>'+
+      '<span style="font-size:11.5px">'+s.u.label+' &nbsp;<code>'+s.u.Z+'-'+s.u.U+'</code>'+
       ' &nbsp;<span style="color:var(--fg-3);font-size:10.5px">buffer ±'+buf.toFixed(2)+' m</span></span></span>'+
       '<span class="hit" style="color:var(--'+(hit?"crit":"ok")+')">'+(hit?"Strike":"Clear")+'</span></div>';
   }).join("")+'<p class="note">Depths below existing ground (8.00 m MSL). A volume counts as struck when the trench reaches its top <em>minus twice its own uncertainty</em> — the water main, known only from GPR at ±0.30 m, is flagged 0.60 m earlier than a levelled basement slab.</p>';
@@ -1683,22 +1788,85 @@ function renderDig(){
 $("digD").addEventListener("input",renderDig);
 
 (function(){
-  var by={}; units.forEach(function(u){ (by[u.Z]=by[u.Z]||[]).push(u); });
-  var h='<p class="note" style="margin:0 0 12px">'+units.length+' identifiers allotted for this parcel from one 14-character parent, deterministically, in a single pass. Cut any of them at 14 characters and the legacy ULPIN comes back unchanged — which is why nothing already in NIC\'s systems has to migrate.</p>';
-  h+='<table class="rrr"><thead><tr><th>Z</th><th>Class</th><th>Count</th><th>Levels used</th><th>Example</th></tr></thead><tbody>';
-  Object.keys(CLS).forEach(function(z){
-    var a=by[z]||[]; if(!a.length) return;
-    var lv={}; a.forEach(function(u){ lv[u.L]=1; });
-    h+='<tr><td style="font-family:var(--f-mono);color:var('+CLS[z].css+');font-weight:700">'+z+'</td><td>'+
-      CLS[z].name+'</td><td style="text-align:left;font-family:var(--f-mono)">'+a.length+
-      '</td><td style="text-align:left;font-family:var(--f-mono);font-size:10.5px">'+Object.keys(lv).join(" ")+
-      '</td><td>'+a[Math.floor(a.length/2)].pretty+'</td></tr>';
+  var byZ={}; units.forEach(function(u){ (byZ[u.Z]=byZ[u.Z]||[]).push(u); });
+  
+  // Group by vertical level code P[-2:]
+  var byLvl={};
+  units.forEach(function(u){
+    var lvlCode=u.P.slice(-2);
+    byLvl[lvlCode]=byLvl[lvlCode]||[];
+    byLvl[lvlCode].push(u);
   });
-  $("p-ledger").innerHTML=h+'</tbody></table>';
+
+  var h='<div style="display:flex;flex-direction:column;gap:18px">';
+  h+='<div><p class="note" style="margin:0 0 10px">'+units.length+' volumetric cadastre units registered for this parcel under the <b>18-character SAI Standard</b>: <code>P(14)Z(1)U(2)D(1)</code> (e.g. <code>27MH0BKC0G01H7S03U</code>). The last two digits of the 14-character Parent ULPIN (<b>P</b>) encode vertical position in Base-32 (&lt; H0 for basements/subsurface, H0 for ground, &gt; H0 for floors &amp; air-rights). Only <b>S</b> (Surfaces), <b>A</b> (Air-rights), and <b>I</b> (Infrastructure) classes are used.</p></div>';
+
+  // Table 1: Z-Class Architecture Summary (S, A, I)
+  h+='<div><h4 style="font-size:12px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;color:var(--fg-2)">1. Z-Class Architecture Summary</h4>';
+  h+='<table class="rrr"><thead><tr><th>Z</th><th>Class Name</th><th>Scope &amp; Description</th><th>Count</th><th>Vertical Level Suffixes (P[-2:])</th><th>Example 3D ULPIN</th></tr></thead><tbody>';
+  Object.keys(CLS).forEach(function(z){
+    var a=byZ[z]||[]; if(!a.length) return;
+    var lvMap={}; a.forEach(function(u){ lvMap[u.P.slice(-2)]=1; });
+    var desc = z==="S" ? "Built surfaces (ground parcel, basements B1–B2, parking bays, retail, apartments, lift cores, terrace)"
+             : (z==="A" ? "Transferable & unbuilt vertical air-rights envelope (between roof and +70m zoning height limit)"
+             : "Subsurface and elevated civic transit & utility corridors (Metro 3, Metro 2B, water main)");
+    h+='<tr><td style="font-family:var(--f-mono);color:var('+CLS[z].css+');font-weight:700;font-size:13px">'+z+'</td>'+
+      '<td style="font-weight:600">'+CLS[z].name+'</td>'+
+      '<td style="font-size:11.5px;color:var(--fg-2)">'+desc+'</td>'+
+      '<td style="text-align:left;font-family:var(--f-mono);font-weight:700">'+a.length+'</td>'+
+      '<td style="text-align:left;font-family:var(--f-mono);font-size:11px;color:var(--fg-3)">'+Object.keys(lvMap).join(", ")+'</td>'+
+      '<td><code>'+a[Math.floor(a.length/2)].pretty+'</code></td></tr>';
+  });
+  h+='</tbody></table></div>';
+
+  // Table 2: Level-by-Level Vertical Hierarchy (Using the last 2 digits of P!)
+  h+='<div><h4 style="font-size:12px;text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px;color:var(--fg-2)">2. Vertical Levels Ledger (Base-32 Level Suffix in P)</h4>';
+  h+='<table class="rrr"><thead><tr><th>Level Suffix (P)</th><th>Base-10</th><th>Physical Level / Elevation</th><th>Class (Z)</th><th>Units Count</th><th>Unit Code Range (U)</th><th>Sample 3D ULPIN</th></tr></thead><tbody>';
+
+  var orderedCodes=["GQ","GU","GV","H0","H1","H2","H3","H4","H5","H6","H7","H8","H9","HA","HB","HC","HD","HE","HF","HG","HH"];
+  var lvlMeta={
+    GQ:{dec:538, name:"Subsurface Axis (−20.0 m)", desc:"Metro Line 3 twin-bore tunnels"},
+    GU:{dec:542, name:"Basement B2 (−6.80 to −3.60 m)", desc:"24 parking bays + circulation shell"},
+    GV:{dec:543, name:"Basement B1 (−3.40 to −0.20 m) & Water Main (−1.8 m)", desc:"24 parking bays + shell + water main"},
+    H0:{dec:544, name:"Ground Level (0.00 to +4.95 m)", desc:"Ground parcel + 4 retail units + entrance lobby"},
+    H1:{dec:545, name:"Floor 01 (+4.95 to +8.10 m)", desc:"8 residential units + lift core"},
+    H2:{dec:546, name:"Floor 02 (+8.10 to +11.25 m)", desc:"8 residential units + lift core"},
+    H3:{dec:547, name:"Floor 03 (+11.25 to +14.40 m)", desc:"8 residential units + lift core"},
+    H4:{dec:548, name:"Floor 04 & Metro 2B Deck (+12.0 to +17.55 m)", desc:"8 residential units + core + viaduct deck"},
+    H5:{dec:549, name:"Floor 05 (+17.55 to +20.70 m)", desc:"8 residential units + lift core"},
+    H6:{dec:550, name:"Floor 06 (+20.70 to +23.85 m)", desc:"8 residential units + lift core"},
+    H7:{dec:551, name:"Floor 07 (+23.85 to +27.00 m)", desc:"8 residential units + lift core (laser surveyed)"},
+    H8:{dec:552, name:"Floor 08 (+27.00 to +30.15 m)", desc:"8 residential units + lift core"},
+    H9:{dec:553, name:"Floor 09 (+30.15 to +33.30 m)", desc:"8 units (incl. duplex unit 0904) + lift core"},
+    HA:{dec:554, name:"Floor 10 (+33.30 to +36.45 m)", desc:"8 residential units + lift core"},
+    HB:{dec:555, name:"Floor 11 (+36.45 to +39.60 m)", desc:"8 residential units + lift core"},
+    HC:{dec:556, name:"Floor 12 (+39.60 to +42.75 m)", desc:"8 residential units + lift core"},
+    HD:{dec:557, name:"Floor 13 (+42.75 to +45.90 m)", desc:"8 residential units + lift core"},
+    HE:{dec:558, name:"Floor 14 (+45.90 to +49.05 m)", desc:"8 units + lift core (unsanctioned 14th tier)"},
+    HF:{dec:559, name:"Terrace / Roof (+49.05 to +52.05 m)", desc:"Lift machine room, water tanks & roof deck"},
+    HG:{dec:560, name:"Air-Rights Band 1 (+52.05 to +60.00 m)", desc:"Buildable balance (384 m² / 0.41 floor)"},
+    HH:{dec:561, name:"Air-Rights Band 2 (+60.00 to +70.00 m)", desc:"Zoning height envelope headroom"}
+  };
+
+  orderedCodes.forEach(function(code){
+    var grp=byLvl[code]; if(!grp||!grp.length) return;
+    var meta=lvlMeta[code]||{dec:"-", name:"Level "+code, desc:""};
+    var zSet=[...new Set(grp.map(function(x){ return x.Z; }))].sort().join(", ");
+    var uList=grp.map(function(x){ return x.U; }).sort();
+    var uRange = uList.length===1 ? uList[0] : (uList[0]+"–"+uList[uList.length-1]);
+    h+='<tr><td style="font-family:var(--f-mono);font-weight:700;color:var(--accent)">'+code+'</td>'+
+      '<td style="font-family:var(--f-mono);color:var(--fg-3)">'+meta.dec+'</td>'+
+      '<td><b>'+meta.name+'</b><br><span style="font-size:11px;color:var(--fg-3)">'+meta.desc+'</span></td>'+
+      '<td style="font-family:var(--f-mono)">'+zSet+'</td>'+
+      '<td style="font-family:var(--f-mono);font-weight:600">'+grp.length+'</td>'+
+      '<td style="font-family:var(--f-mono);font-size:11px">'+uRange+'</td>'+
+      '<td><code>'+grp[0].pretty+'</code></td></tr>';
+  });
+
+  h+='</tbody></table></div></div>';
+  $("p-ledger").innerHTML=h;
 })();
 
-/* The presenter's own open/close choices win. Once you collapse the bottom panel it stays
-   collapsed until you reopen it — the tour switches tab content but never forces it open. */
 var deckOverride=null;   // null = tour decides · "open" / "closed" = you decided
 function setDeck(open){
   var deck=$("deck");
@@ -1708,11 +1876,13 @@ function setDeck(open){
 }
 function deckIsOpen(){ return !$("deck").classList.contains("min"); }
 function showTab(name,fromTour){
-  Array.prototype.forEach.call(document.querySelectorAll(".tabs button[role=tab]"),function(o){
-    o.setAttribute("aria-selected",o.dataset.tab===name?"true":"false"); });
-  ["issues","col","fsi","dig","ledger","prov"].forEach(function(t){ $("p-"+t).hidden=(t!==name); });
-  if(fromTour && deckOverride==="closed"){ setTimeout(positionTour,30); return; }
-  setDeck(true);
+  Array.prototype.forEach.call(document.querySelectorAll(".tabs button[role=tab]"),function(b){
+    var on=(b.dataset.tab===name);
+    b.setAttribute("aria-selected",on?"true":"false");
+    var p=$("p-"+b.dataset.tab); if(p) p.hidden=!on;
+  });
+  if(fromTour&&deckOverride==="closed") return;
+  if(!deckIsOpen()) setDeck(true);
 }
 Array.prototype.forEach.call(document.querySelectorAll(".tabs button[role=tab]"),function(b){
   b.onclick=function(){ deckOverride="open"; showTab(b.dataset.tab); };
@@ -1727,25 +1897,31 @@ $("deckOpen").onclick=function(){
 };
 function positionTour(){
   var t=$("tour");
-  if(!t.classList.contains("on")) return;
-  t.style.bottom=($("deck").getBoundingClientRect().height+14)+"px";
+  var dh = deckIsOpen() ? $("deck").getBoundingClientRect().height : 0;
+  if(t && t.classList.contains("on")){
+    t.style.bottom=(dh+14)+"px";
+  }
 }
 addEventListener("resize",positionTour);
 
 /* ═════ 8. GUIDED TOUR ═════ */
-function pick(z,l,u){ return units.filter(function(x){ return x.Z===z&&x.L===l&&x.U===u; })[0]; }
-function atLevel(L){ return units.filter(function(x){ return x.L===L; }); }
+function pick(z,u){ return units.filter(function(x){ return x.Z===z&&x.U===u; })[0]; }
 function ofClass(z){ return units.filter(function(x){ return x.Z===z; }); }
-var U_S=units[0], U703=pick("A","07","003");
-var U_AIR=ofClass("R");
-var U_TUN=units.filter(function(u){ return u.Z==="I"&&u.L==="D2"; });
-var U_LOW=units.filter(function(u){ return u.Z==="U"||(u.Z==="C"&&(u.L==="B1"||u.L==="B2")); });
+var U_S=units[0];
+/* U703: Level 07 (Base-32 "H7"), Z-class "S", Unit "03" → 27MH0BKC0G01H7S03U */
+var U703=units.filter(function(x){ return x.floorK===7&&x.ringI===2; })[0];
+/* U_AIR: all above-ground air-rights volumes */
+var U_AIR=units.filter(function(u){ return u.air; });
+/* U_TUN: Metro Line 3 tunnels */
+var U_TUN=units.filter(function(u){ return u.tunnel; });
+/* U_LOW: basements + parking bays */
+var U_LOW=units.filter(function(u){ return u.bsmtLvl; });
 
 /* Each step describes the WHOLE scene, so the tour never inherits a stray toggle. */
 var TOUR=[
  {h:"This is the entire land record today",
   p:"One polygon in BKC, 4,032 m², carrying one 14-character Bhu-Aadhaar. The building is drawn faint because as far as the Record of Rights is concerned it does not exist. Everything a city actually buys, sells, mortgages and digs through happens inside this outline, and none of it is written down.",
-  scene:{ctx:true,soil:false,ortho:true,env:false,anno:false,cut:17,exp:0,mode:"class",focus:[U_S]},
+  scene:{ctx:true,soil:false,ortho:true,env:false,anno:true,cut:17,exp:0,mode:"class",focus:[U_S]},
   cam:{r:268,theta:-0.74,phi:1.12,tx:0,ty:6,tz:0}, sel:function(){ return U_S; }, tab:null},
 
  {h:"189 owned volumes were hiding inside it",
@@ -1755,17 +1931,17 @@ var TOUR=[
 
  {h:"Open one floor and it reads like a plan",
   p:"Level 07 in isolation: eight private units ringed around a common lift core, each an identified volume with its own carpet area. This is a sanctioned floor plan that has been georeferenced, extruded between measured slab elevations, and given identity — not a drawing filed in a cupboard.",
-  scene:{ctx:false,soil:false,ortho:true,env:false,anno:true,base:false,isolate:"07",label:"07",focus:null},
+  scene:{ctx:false,soil:false,ortho:true,env:false,anno:true,base:false,isolate:7,label:7,focus:null},
   cam:{r:66,theta:-0.06,phi:0.17,tx:0,ty:25.4,tz:0}, sel:function(){ return U703; }, tab:null, drift:false},
 
  {h:"Now stand inside one flat",
-  p:"Unit 07/003, measured: 12.00 m by 9.00 m, floor-to-floor 3.15 m, carpet 100.4 m². It runs from 31.85 to 35.00 m above mean sea level. Grade A, because somebody walked in with a laser meter and reconciled six rooms against the plan to within 0.9 per cent.",
-  scene:{ctx:false,soil:false,ortho:true,env:false,anno:true,base:false,isolate:"07",focus:[U703],dims:U703},
+  p:"Unit 07/03 (floor 7, ring 3), measured: 12.00 m by 9.00 m, floor-to-floor 3.15 m, carpet 100.4 m\u00b2. It runs from 31.85 to 35.00 m above mean sea level. Grade A, because somebody walked in with a laser meter and reconciled six rooms against the plan to within 0.9 per cent.",
+  scene:{ctx:false,soil:false,ortho:true,env:false,anno:true,base:false,isolate:7,focus:[U703],dims:U703},
   cam:{r:36,theta:-0.78,phi:1.16,tx:12,ty:25.4,tz:8.5}, sel:function(){ return U703; }, tab:null},
 
  {h:"The number that names it, and checks itself",
-  p:"27MH0BKC0G0114-A-07-003-C. The first fourteen characters are the existing parcel ULPIN. Then class A for a private above-ground unit, level 07, unit 003 — and a final character computed by a base-36 Luhn fold. Mistype any one character and a phone rejects it offline, with no database lookup at all.",
-  scene:{ctx:false,soil:false,ortho:true,env:false,anno:true,base:false,isolate:"07",focus:[U703],dims:U703},
+  p:""+(U703?U703.pretty:"27MH0BKC0G01H7S03U")+". The first fourteen characters are the Parent ULPIN (plot ID plus floor H7 in base-32). Then Z-class S for a Surface unit (above, below, or on ground), unit code 03 in base-32 — and a final check character computed by a base-36 Luhn fold. Mistype any one character and a phone rejects it offline, with no database lookup at all.",
+  scene:{ctx:false,soil:false,ortho:true,env:false,anno:true,base:false,isolate:7,focus:[U703],dims:U703},
   cam:{r:30,theta:-1.5,phi:1.28,tx:12,ty:25.4,tz:8.5}, sel:function(){ return U703; }, tab:null},
 
  {h:"Everything stacked under and over that flat",
@@ -1774,34 +1950,34 @@ var TOUR=[
   cam:{r:158,theta:-1.26,phi:1.40,tx:6,ty:12,tz:4}, sel:function(){ return U703; }, tab:"col"},
 
  {h:"Below the plinth, where no drone can see",
-  p:"Two basements and 48 parking bays, each an individually allotted U-class volume. No aerial sensor will ever measure any of this. It comes from the sanctioned basement plan with the plinth levelled down the ramp — and every card says exactly that, at Grade B, instead of pretending otherwise.",
+  p:"Two basements and 48 parking bays, each an individually identified S-class volume. No aerial sensor will ever measure any of this. It comes from the sanctioned basement plan with the plinth levelled down the ramp — and every card says exactly that, at Grade B, instead of pretending otherwise.",
   scene:{ctx:false,soil:true,ortho:false,env:false,anno:true,cut:1,isolate:null,focus:U_LOW},
-  cam:{r:90,theta:-0.42,phi:1.52,tx:0,ty:-5,tz:0}, sel:function(){ return pick("U","B2","017"); }, tab:"issues"},
+  cam:{r:90,theta:-0.42,phi:1.52,tx:0,ty:-5,tz:0}, sel:function(){ return units.filter(function(u){return u.anomaly;})[0]; }, tab:"issues"},
 
  {h:"Deeper still — and it belongs to somebody else",
   p:"Metro Line 3's twin bores run 20 metres beneath this plot through Deccan trap basalt, joined by a cross-passage. The land above stays privately owned; the tunnel is an easement recorded on the parent parcel with its depth band. Ten metres of solid rock separate the tunnel crown from the lowest basement slab.",
   scene:{ctx:false,soil:true,ortho:false,env:false,anno:true,cut:1,focus:U_TUN},
-  cam:{r:104,theta:-0.30,phi:1.70,tx:0,ty:-19,tz:0}, sel:function(){ return pick("I","D2","001"); }, tab:null},
+  cam:{r:104,theta:-0.30,phi:1.70,tx:0,ty:-19,tz:0}, sel:function(){ return U_TUN[0]; }, tab:null},
 
  {h:"So the contractor can ask before digging",
   p:"Draw a trench, enter a depth, and the engine returns everything you could strike — each volume buffered by twice its own positional uncertainty. The water main is known only from a GPR sweep at ±0.30 m, so it is flagged 0.60 m earlier than a levelled basement slab. Bad survey data makes the system more cautious, not less.",
   scene:{ctx:false,soil:true,ortho:false,env:false,anno:true,cut:1,focus:null},
-  cam:{r:124,theta:-0.62,phi:1.50,tx:0,ty:-8,tz:0}, sel:function(){ return pick("I","D1","001"); }, tab:"dig"},
+  cam:{r:124,theta:-0.62,phi:1.50,tx:0,ty:-8,tz:0}, sel:function(){ return units.filter(function(u){return u.pipe;})[0]; }, tab:"dig"},
 
  {h:"Above the roof, the pale volume",
-  p:"Air-rights bands H6 and H7 are drawn light and luminous because nothing is built there — they are a right, not a structure. The roof stands at +49.05 m and the zoning limit at +70.00 m, so there is 20.95 m of headroom above this building. It looks like room for six more floors.",
+  p:"Air-rights bands HG and HH are drawn light and luminous because nothing is built there — they are a right, not a structure. The roof stands at +49.05 m and the zoning limit at +70.00 m, so there is 20.95 m of headroom above this building. It looks like room for six more floors.",
   scene:{ctx:false,soil:false,ortho:true,env:true,anno:true,cut:17,mode:"class",focus:U_AIR},
-  cam:{r:178,theta:-0.60,phi:1.16,tx:0,ty:54,tz:0}, sel:function(){ return pick("R","H6","001"); }, tab:null},
+  cam:{r:178,theta:-0.60,phi:1.16,tx:0,ty:54,tz:0}, sel:function(){ return U_AIR[0]; }, tab:null},
 
  {h:"But height was never the binding limit",
   p:"Only 384 m² of floor area remains under the FSI ceiling — the small green box on the roof, drawn to true scale at 19.6 m square. That is 0.41 of one floor plate, not six floors. Height and development rights are two independent statutory limits, and here FSI binds first. A cadastre recording elevation alone would misprice this air column roughly fifteen-fold.",
   scene:{ctx:false,soil:false,ortho:true,env:true,anno:true,cut:17,focus:null},
-  cam:{r:112,theta:-0.88,phi:1.02,tx:0,ty:52,tz:0}, sel:function(){ return pick("R","H6","001"); }, tab:"fsi"},
+  cam:{r:112,theta:-0.88,phi:1.02,tx:0,ty:52,tz:0}, sel:function(){ return U_AIR[0]; }, tab:"fsi"},
 
  {h:"And the rules catch what people miss",
   p:"Façade lines count 14 storeys; the sanctioned plan says 13. Level 14 gets IDs marked unsanctioned — and the geometry reveals it also swallowed 936 m² of FSI that was never granted, worth more than the concrete. Meanwhile a declared duplex overlaps the flat above it by 304.7 m³, and registration stays blocked until a registrar resolves it.",
   scene:{ctx:false,soil:false,ortho:true,env:false,anno:true,cut:17,mode:"issue",focus:null},
-  cam:{r:132,theta:-1.02,phi:1.04,tx:0,ty:34,tz:0}, sel:function(){ return pick("A","09","004"); }, tab:"issues"}
+  cam:{r:132,theta:-1.02,phi:1.04,tx:0,ty:34,tz:0}, sel:function(){ return units.filter(function(u){return u.conflict;})[0]; }, tab:"issues"}
 ];
 function setMode(m){
   colourMode=m;
@@ -1858,16 +2034,24 @@ function showTour(i){
   schedule();
 }
 function startTour(){
+  tourSeen=true;
   var need=(stage!==2);
   if(need) enterViewer();
-  $("btnTour").classList.remove("off"); $("btnTour").innerHTML="&#9632; Stop tour";
+  SC.anno=true; syncTog();
+  if($("tourCta")) $("tourCta").classList.remove("on");
+  $("btnTour").style.display="";
+  $("btnTour").classList.remove("off");
+  $("btnTour").innerHTML="&#9632; Stop tour";
   setTimeout(function(){ showTour(0); }, need?1750:0);
 }
 function endTour(){
   stopAuto(); tourI=-1; driftOn=false;
   $("tour").classList.remove("on");
+  if($("tourCta")) $("tourCta").classList.remove("on");
   document.querySelector(".hud").style.display="";
-  $("btnTour").classList.add("off"); $("btnTour").innerHTML="&#9654; Start demo";
+  $("btnTour").style.display="";
+  $("btnTour").classList.add("off");
+  $("btnTour").innerHTML="&#9654; Guided tour";
   setScene({ctx:true,soil:true,ortho:true,env:true,anno:true,cut:17,exp:0,mode:"class",
             isolate:null,focus:null,dims:null,label:null,base:true});
   select(U703||units[0]);
@@ -1876,6 +2060,7 @@ function endTour(){
   setSidePanel("left",false); setSidePanel("right",false);
 }
 $("btnTour").onclick=function(){ tourI>=0?endTour():startTour(); };
+if($("btnTourCta")) $("btnTourCta").onclick=function(){ startTour(); };
 $("tourNext").onclick=function(){ stopAuto(); tourI===TOUR.length-1?endTour():showTour(tourI+1); };
 $("tourPrev").onclick=function(){ stopAuto(); if(tourI>0) showTour(tourI-1); };
 $("tourExit").onclick=endTour;
@@ -1895,7 +2080,7 @@ addEventListener("keydown",function(e){
 
 /* boot */
 syncTog(); repaint(); applyVis(); applyFocus(); renderDig(); updateCam();
-select(pick("A","07","003")||units[0]);
+select((U703)||units[0]);
 setSidePanel("left",false); setSidePanel("right",false); setDeck(false);
 setStage(0); setTimeout(resize,60);
 matchMedia("(prefers-color-scheme: dark)").addEventListener("change",function(){ repaint(); if(stage===0) paintOrtho(); });
